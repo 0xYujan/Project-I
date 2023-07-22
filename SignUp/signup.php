@@ -64,7 +64,7 @@
                 <button type="submit" class="btn"><strong>SIGN UP</strong></button>
                 <div class="login-register">
                     <p>Already have an account? <a href="LogIn/login.php" class="register-link">Log In</a></p>
-                </div>
+                </div><br><br><br>
             </form>
         </div>
 
