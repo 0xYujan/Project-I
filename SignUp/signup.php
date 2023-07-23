@@ -55,7 +55,7 @@
 
                 <div class="input-box">
                     <input type="password" required placeholder="*************">
-                    <label>Conform Password</label>
+                    <label>Confirm Password</label>
                 </div>
 
                 <div class="terms-conditions">
