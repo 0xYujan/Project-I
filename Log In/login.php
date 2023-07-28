@@ -11,18 +11,7 @@
 
 <body>
 
-    <header class="header">
-        <nav class="navbar">
-            <a href="#">HOME</a>
-            <a href="#">COURTS</a>
-            <a href="#">ABOUT</a>
-            <a href="#">CONTACT</a>
-        </nav>
-        <nav class="login-signup">
-            <a href="#">LOGIN</a>
-            <a href="#">SIGNUP</a>
-        </nav>
-    </header>
+    <?php include("../assets/nav.php"); ?>
     <div class="row-line">
         <div class="members-text">
             <h2>MEMBERS AREA</h2>
@@ -52,7 +41,7 @@
                 </div>
                 <button type="submit" class="btn"><strong>LOGIN</strong></button>
                 <div class="login-register">
-                    <p>Don't have an account? <a href="#" class="register-link">Sign Up</a></p>
+                    <p>Don't have an account? <a href="../SignUp/signup.php" class="register-link">Sign Up</a></p>
                 </div>
             </form>
         </div>

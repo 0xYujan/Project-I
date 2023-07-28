@@ -12,18 +12,7 @@
 
 <body>
 
-    <header class="header">
-        <nav class="navbar">
-            <a href="#">HOME</a>
-            <a href="#">COURTS</a>
-            <a href="#">ABOUT</a>
-            <a href="#">CONTACT</a>
-        </nav>
-        <nav class="login-signup">
-            <a href="#">LOGIN</a>
-            <a href="#">SIGNUP</a>
-        </nav>
-    </header>
+    <?php include("../assets/nav.php"); ?>
 
     <div class="row-line">
         <div class="register-text">
@@ -63,7 +52,7 @@
                 </div>
                 <button type="submit" class="btn"><strong>SIGN UP</strong></button>
                 <div class="login-register">
-                    <p>Already have an account? <a href="LogIn/login.php" class="register-link">Log In</a></p>
+                    <p>Already have an account? <a href="../Log In/login.php" class="register-link">Log In</a></p>
                 </div><br><br><br>
             </form>
         </div>

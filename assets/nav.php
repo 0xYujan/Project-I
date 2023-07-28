@@ -5,8 +5,8 @@
         <a href="#">ABOUT</a>
         <a href="#">CONTACT</a>
     </nav>
-    <form action="#" class="search-bar">
-        <input type="text" placeholder="Search.....">
-        <button type="submit"><i class='bx bx-search'></i></button>
-    </form>
-</header> 
+    <nav class="login-signup">
+        <a href="../Log In/login.php">LOGIN</a>
+        <a href="../SignUp/signup.php">SIGNUP</a>
+    </nav>
+</header>
