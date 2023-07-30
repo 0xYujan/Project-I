@@ -42,10 +42,7 @@
 
     <div class="location">
         <h1>Futsal Courts</h1>
-        <form action="#" class="search-bar">
-            <input type="text" placeholder="Search.....">
-            <button type="submit"><i class='bx bx-search'></i></button>
-        </form>
+
     </div>
 
     <div class="court-container">
@@ -73,6 +70,10 @@
 
     <div class="near-you-text">
         <h1>Futsal Court Near You</h1>
+        <form action="#" class="search-bar">
+            <input type="text" placeholder="Search.....">
+            <button type="submit"><i class='bx bx-search'></i></button>
+        </form>
     </div>
     <div class="near-you-container">
         <div class="near-you-img">
@@ -97,13 +98,71 @@
             <br />
             <div class="near-you-btn">
 
-                <a href="#" class="button"><strong>Map<i class='bx bx-map'></i></strong></a>
+                <a href="#" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
                 <a href="#" class="button"><strong>Book Now</strong></a>
             </div>
         </div>
     </div>
 
+    <div class="near-you-container-2">
 
+        <div class="near-you-2">
+            <h1>Futsal Arena Boudha</h1>
+            <br />
+
+            <p><i class='bx bxs-map' style="color: rgba(161, 254, 107, 1);"></i> Kathmandu</p>
+            <p><i class='bx bxs-check-square' style="color: rgba(161, 254, 107, 1);"></i> Court Availability</p>
+            <p><i class='bx bxs-check-circle' style="color: rgba(161, 254, 107, 1);"></i> Open 6 AM</p>
+            <p><i class='bx bxs-x-circle' style="color: rgba(161, 254, 107, 1);"></i> Close 9 PM</p>
+            <br />
+            <p>4.1
+                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
+                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
+                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
+                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
+                <i class='bx bxs-star-half' style="color: rgba(161, 254, 107, 1);"></i>
+            </p>
+            <br />
+            <div class="near-you-btn-2">
+
+                <a href="#" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
+                <a href="#" class="button"><strong>Book Now</strong></a>
+            </div>
+        </div>
+        <div class="near-you-img">
+            <img src="../assets/2.png">
+        </div>
+    </div>
+
+    <div class="near-you-container">
+        <div class="near-you-img">
+            <img src="../assets/2.png">
+        </div>
+        <div class="near-you">
+            <h1>Futsal Arena Boudha</h1>
+            <br />
+
+            <p><i class='bx bxs-map' style="color: rgba(161, 254, 107, 1);"></i> Kathmandu</p>
+            <p><i class='bx bxs-check-square' style="color: rgba(161, 254, 107, 1);"></i> Court Availability</p>
+            <p><i class='bx bxs-check-circle' style="color: rgba(161, 254, 107, 1);"></i> Open 6 AM</p>
+            <p><i class='bx bxs-x-circle' style="color: rgba(161, 254, 107, 1);"></i> Close 9 PM</p>
+            <br />
+            <p>4.1
+                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
+                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
+                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
+                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
+                <i class='bx bxs-star-half' style="color: rgba(161, 254, 107, 1);"></i>
+            </p>
+            <br />
+            <div class="near-you-btn">
+
+                <a href="#" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
+                <a href="#" class="button"><strong>Book Now</strong></a>
+            </div>
+        </div>
+    </div>
+    <?php include("../assets/footer.php"); ?>
     <script src="script.js"></script>
 </body>
 

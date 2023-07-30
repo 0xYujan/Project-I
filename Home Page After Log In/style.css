@@ -105,7 +105,7 @@ body {
 }
 
 .container {
-    margin-top: 7%;
+    margin-top: 5%;
 }
 
 .slides-wrapper {
@@ -155,11 +155,11 @@ body {
 /* Futsal Court  */
 
 .location {
-    display: flex;
+
     padding: 3rem 5rem;
     color: aliceblue;
     font-size: 20px;
-    justify-content: space-between;
+
 }
 
 */ .court-box {
@@ -214,10 +214,11 @@ body {
 }
 
 .near-you-text {
-
+    display: flex;
     padding: 3rem 5rem;
     color: aliceblue;
     font-size: 20px;
+    justify-content: space-between;
 }
 
 .near-you-container {
@@ -230,14 +231,11 @@ body {
     /* gap: 1.5rem; */
 }
 
-
 .near-you-img img {
     object-fit: cover;
-    padding: 1rem 5rem;
-    height: 30rem;
-    width: 45rem;
-    /* border-radius: 50%; */
-    aspect-ratio: 3 / 1;
+    padding: 0rem 5rem;
+    width: 789px;
+    height: 545px;
 }
 
 .near-you {
@@ -279,11 +277,48 @@ body {
     z-index: 100;
 }
 
+/* Second img */
 
+.near-you-2 {
+    color: wheat;
+    padding: 0 0 0 5rem;
+}
 
-/* 
-.near-you h1{
-    font-size: var(--h1-font);
-    line-height: 1.2;
-    margin-bottom: 20px;
-} */
+.near-you-2 h1 {
+    font-size: 60px;
+}
+
+.near-you-2 p {
+    font-size: 20px;
+}
+
+.near-you-btn-2 {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    z-index: 100;
+}
+
+.button {
+    margin-right: 2rem;
+}
+
+.near-you-btn-2 a {
+    position: relative;
+    font-size: 16px;
+    color: rgba(23, 23, 23, 1);
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 30px;
+
+}
+
+.near-you-container-2 {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    /* gap: 1.5rem; */
+}
