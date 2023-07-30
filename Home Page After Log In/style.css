@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -54,28 +54,28 @@ body {
     opacity: 1;
 }
 
-.search-bar{
+.search-bar {
     width: 250px;
     height: 45px;
     background: transparent;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 6px;
     display: flex;
     align-items: center;
 }
 
-.search-bar input{
+.search-bar input {
     width: 100%;
     background: transparent;
     border: none;
     outline: none;
     font-size: 16px;
-    color:rgba(255, 254, 254, 1);
+    color: rgba(255, 254, 254, 1);
     padding-left: 10px;
 }
 
-.search-bar input::placeholder{
-    color:rgba(255, 254, 254, 1);
+.search-bar input::placeholder {
+    color: rgba(255, 254, 254, 1);
 }
 
 .search-bar button {
@@ -95,26 +95,26 @@ body {
     color: rgba(255, 254, 254, 1);
 }
 
-.row-line{
+.row-line {
     position: absolute;
     top: 25%;
     left: 0;
-    background: rgba(161, 254, 107, 1);  
+    background: rgba(161, 254, 107, 1);
     width: 15%;
     height: 1%;
 }
 
-.container{
+.container {
     margin-top: 7%;
 }
 
-.slides-wrapper{
+.slides-wrapper {
     position: relative;
     max-width: 100%;
     margin: 0 auto;
 }
 
-.slider{
+.slider {
     display: flex;
     aspect-ratio: 16 / 7;
     overflow-x: auto;
@@ -122,13 +122,13 @@ body {
     scroll-behavior: smooth;
 }
 
-.slider img{
+.slider img {
     flex: 1 0 100%;
     scroll-snap-align: start;
     object-fit: cover;
 }
 
-.slider-nav{
+.slider-nav {
     display: flex;
     column-gap: 1rem;
     position: absolute;
@@ -147,26 +147,27 @@ body {
     transition: opacity ease 250s;
 }
 
-.slider-nav a:hover{
+.slider-nav a:hover {
     opacity: 1;
 }
 
 
-    /* Futsal Court  */
+/* Futsal Court  */
 
- .location{
+.location {
+    display: flex;
     padding: 3rem 5rem;
     color: aliceblue;
     font-size: 20px;
+    justify-content: space-between;
 }
 
-*/
-
-.court-box {
+*/ .court-box {
     width: 20rem;
     height: 30rem;
 }
-.court{
+
+.court {
     padding: 0 3rem;
     /* background: red; */
     display: flex;
@@ -177,7 +178,7 @@ body {
     justify-content: space-between;
 }
 
-.court-img img{
+.court-img img {
     object-fit: cover;
     padding: .7rem;
     height: 15rem;
@@ -186,7 +187,7 @@ body {
     aspect-ratio: 3 / 1;
 }
 
-.court-name{
+.court-name {
     margin: 15%;
     color: #ffffff;
     font-size: 25px;
@@ -194,29 +195,32 @@ body {
 }
 
 
-.court-name:hover{
+.court-name:hover {
     color: #121212;
 }
 
-.court-box .court .court-img{
+.court-box .court .court-img {
     height: 25rem;
     padding: 1rem;
-    background: #2B2B2B;;
+    background: #2B2B2B;
+    ;
     outline: var(--outline);
     outline-offset: -1rem;
 }
- .court .court-img:hover{
+
+.court .court-img:hover {
     background: rgba(161, 254, 107, 1);
-        color: #121212;
+    color: #121212;
 }
 
-.near-you-text{
+.near-you-text {
+
     padding: 3rem 5rem;
     color: aliceblue;
     font-size: 20px;
 }
 
-.near-you-container{
+.near-you-container {
     position: relative;
     height: 100vh;
     width: 100%;
@@ -227,7 +231,7 @@ body {
 }
 
 
-.near-you-img img{
+.near-you-img img {
     object-fit: cover;
     padding: 1rem 5rem;
     height: 30rem;
@@ -236,18 +240,46 @@ body {
     aspect-ratio: 3 / 1;
 }
 
-.near-you{
+.near-you {
     color: wheat;
+    /* padding: 0 10rem; */
 }
 
-.near-you h1{
+.near-you h1 {
     font-size: 60px;
 
 }
 
-.near-you p{
-    font-size: 30px;
+.near-you p {
+    font-size: 20px;
 }
+
+.near-you-btn a {
+    position: relative;
+    font-size: 16px;
+    color: rgba(23, 23, 23, 1);
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 30px;
+
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: rgba(161, 254, 107, 1);
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.near-you-btn {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    z-index: 100;
+}
+
+
 
 /* 
 .near-you h1{
