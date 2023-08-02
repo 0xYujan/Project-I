@@ -12,7 +12,7 @@
 
 <body>
 
-    <?php include("../assets/nav.php"); ?>
+    <?php include("../assets/Logout_nav.php"); ?>
 
     <div class="row-line">
         <div class="register-text">

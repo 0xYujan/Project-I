@@ -11,7 +11,7 @@
 
 <body>
 
-    <?php include("../assets/nav.php"); ?>
+    <?php include("../assets/Logout_nav.php"); ?>
     <div class="row-line">
         <div class="members-text">
             <h2>MEMBERS AREA</h2>
@@ -47,8 +47,6 @@
         </div>
 
     </div>
-
-
     <script src="script.js"></script>
 </body>
 

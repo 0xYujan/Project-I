@@ -11,18 +11,7 @@
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <a href="#">HOME</a>
-            <a href="#">COURTS</a>
-            <a href="#">ABOUT</a>
-            <a href="#">CONTACT</a>
-        </nav>
-
-        <div class="profile">
-            <a href="#" class="user-profile"><i class='bx bxs-user'></i></a>
-        </div>
-    </header>
+    <?php include("../assets/Login_nav.php"); ?>
 
     <div class="container">
         <div class="slides-wrapper">
