@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oxygen', sans-serif;
+}
+
+body {
+    background: rgba(23, 23, 23, 1);
+}
+
+.container {
+    margin-top: 5.5%;
+}
+
+.slides-wrapper {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.slider {
+    display: flex;
+    aspect-ratio: 16 / 7;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.slider img {
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+    object-fit: cover;
+}
+
+.slider-nav {
+    display: flex;
+    column-gap: 1rem;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.slider-nav a {
+    width: 3rem;
+    height: .2rem;
+    border-radius: 0%;
+    background-color: rgba(161, 254, 107, 1);
+    opacity: 0.75;
+    transition: opacity ease 250s;
+}
+
+.slider-nav a:hover {
+    opacity: 1;
+}
+
+.Court-Name {
+    color: white;
+    padding: 5rem;
+
+}
+
+.Court-Name h1 {
+    font-size: 80px;
+}
+
+.Court-Name p {
+    font-size: 30px;
+}
+
+.Court-Name-btn {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    z-index: 100;
+}
+
+.button {
+    color: black;
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: rgba(161, 254, 107, 1);
+    text-decoration: none;
+    border-radius: 10px;
+    margin-right: 20rem;
+    /* justify-content: space-between; */
+}
+
+.price {
+    font-size: 20px;
+    padding-left: 36%;
+
+}
+
+/* .Court-map {
+    height: 1100px;
+    width: 1100px;
+} */
