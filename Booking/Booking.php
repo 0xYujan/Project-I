@@ -30,7 +30,7 @@
         <a href="#slide-2"></a>
         <a href="#slide-3"></a>
     </div>
-
+ 
     <!-- <div class="near-you-container"> -->
 
     <div class="Court-Name">
@@ -50,22 +50,34 @@
             <i class='bx bxs-star-half' style="color: rgba(161, 254, 107, 1);"></i>
         </p>
         <br />
-        <div class="price">
-            Rs: 1200
-        </div>
         <div class="Court-Name-btn">
-            <a href="#" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
             <a href="#" class="button"><strong>Book Now</strong></a>
+            <h1>Rs: 1200
+</h1>
         </div>
+
+
+                                         <!-- after book now  -->
+
+
+<div class="overlay" id="overlay">
+    <div class="overlay-content">
+        <h2>Booking Form</h2>
+        <form action="#" method="post">
+            
+        </form>
+        <button class="close-btn" id="close-btn">Close</button>
+    </div>
+</div>
+
 
     </div>
     <!-- </div> -->
     <div class="Court-map">
 
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.043496233418!2d85.35969997465604!3d27.71594327617771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1bd0e441b9d1%3A0x81962eaa6a191e35!2sFutsal%20Arena%20Boudha!5e0!3m2!1sen!2snp!4v1691133390561!5m2!1sen!2snp" width="1263" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h1>MAP</h1>
+        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.043496233418!2d85.35969997465604!3d27.71594327617771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1bd0e441b9d1%3A0x81962eaa6a191e35!2sFutsal%20Arena%20Boudha!5e0!3m2!1sen!2snp!4v1691133390561!5m2!1sen!2snp" width="1263" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-    <br>
-    <br>
 
 
     <?php include("../assets/footer.php"); ?>

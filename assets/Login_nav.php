@@ -64,6 +64,25 @@
         width: 15%;
         height: 1%;
     }
+
+    .user-pic{
+        width:40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-left: 30px;
+
+    }
+
+    nav{
+        width: 100%;
+        display: inline-block;
+        list-style: none;
+    }
+
+    nav a {
+        text-decoration: none;
+    }
 </style>
 
 <header class="header">
@@ -73,8 +92,10 @@
         <a href="#">ABOUT</a>
         <a href="#">CONTACT</a>
     </nav>
+    <img src="../assets/profile.png" class="user-pic">
 
-    <div class="profile">
+    <!-- <div class="profile">
         <a href="#" class="user-profile"><i class='bx bxs-user'></i></a>
-    </div>
+        
+    </div> -->
 </header>
