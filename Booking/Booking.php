@@ -30,7 +30,7 @@
         <a href="#slide-2"></a>
         <a href="#slide-3"></a>
     </div>
- 
+
     <!-- <div class="near-you-container"> -->
 
     <div class="Court-Name">
@@ -53,22 +53,51 @@
         <div class="Court-Name-btn">
             <a href="#" class="button"><strong>Book Now</strong></a>
             <h1>Rs: 1200
-</h1>
+            </h1>
         </div>
 
 
-                                         <!-- after book now  -->
+        <!-- after book now  -->
 
 
-<div class="overlay" id="overlay">
-    <div class="overlay-content">
-        <h2>Booking Form</h2>
-        <form action="#" method="post">
-            
-        </form>
-        <button class="close-btn" id="close-btn">Close</button>
-    </div>
-</div>
+        <div class="overlay" id="overlay">
+            <div class="overlay-content">
+                <h2>Booking Form</h2>
+                <div class="book_container">
+                    <h3>Add Time</h3>
+                    <form action="add_time.php" method="post">
+                        <div class="form-group">
+                            <label for="date">Date:</label>
+                            <input type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time:</label>
+                            <select id="time" name="time" required>
+                                <option value="420">6 TO 7 AM</option>
+                                <option value="510">7 TO 8 AM</option>
+                                <option value="570">8 TO 9 AM</option>
+                                <option value="630">9 TO 10 AM</option>
+                                <option value="690">10 TO 11 AM</option>
+                                <option value="750">11 TO 12 AM</option>
+                                <option value="810">12 TO 1 PM</option>
+                                <option value="870">1 TO 2 PM</option>
+                                <option value="930">2 TO 3 PM</option>
+                                <option value="990">3 TO 4 PM</option>
+                                <option value="1050">4 TO 5 PM</option>
+                                <option value="1110">5 TO 6 PM</option>
+                                <option value="1170">6 TO 7 PM</option>
+                                <option value="1230">7 TO 8 PM</option>
+                                <option value="1290">8 TO 9 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Add Time">
+                        </div>
+                    </form>
+                </div>
+                <button class="close-btn" id="close-btn">Close</button>
+            </div>
+        </div>
 
 
     </div>

@@ -1,44 +1,3 @@
-<?php
-// Assuming you have defined database credentials
-$host = "your_host";
-$username = "your_username";
-$password = "your_password";
-$database = "your_database";
-
-// Establishing database connection
-$conn = mysqli_connect($host, $username, $password, $database);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    // Validate and sanitize user inputs here
-    // Perform SQL query to check if the email and password match a record
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) == 1) {
-        // Successful login
-        session_start();
-        $_SESSION["email"] = $email;
-        // Redirect to the member area or another page
-        header("Location: member_area.php");
-        exit();
-    } else {
-        // Failed login, show an error message
-        $error = "Invalid email or password.";
-    }
-}
-
-// Close the database connection
-mysqli_close($conn);
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,14 +24,14 @@ mysqli_close($conn);
 
     <div class="logreg-box">
         <div class="form-box login">
-            <form action="#">
+            <form action="authentication.php" method="post">
                 <div class="input-box">
-                    <input type="email" required placeholder="youremail@example.com">
+                    <input type="email" name="Email" required placeholder="youremail@example.com">
                     <label>Email</label>
                 </div>
 
                 <div class="input-box">
-                    <input type="password" required placeholder="***************">
+                    <input type="password" name="Password" required placeholder="***************">
                     <label>Password</label>
                 </div>
 

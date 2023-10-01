@@ -80,7 +80,7 @@ body {
 }
 
 .button {
-   
+
     border: 2px solid;
     border-color: rgba(161, 254, 107, 1);
     color: rgba(161, 254, 107, 1);
@@ -94,7 +94,7 @@ body {
 }
 
 
-.button:hover{
+.button:hover {
     background-color: rgba(161, 254, 107, 1);
     color: rgb(0, 0, 0);
 }
@@ -104,14 +104,14 @@ body {
     padding-left: 5%;
 }
 
-.map{
-   
+.map {
+
     padding: 3rem;
     width: 100%;
     margin: 0;
 }
 
-.Court-map h1{
+.Court-map h1 {
     padding: 5rem;
     font-size: 50px;
     color: rgba(161, 254, 107, 1);
@@ -129,7 +129,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
     z-index: 1000;
     justify-content: center;
@@ -158,3 +158,34 @@ body {
 /*----------------------------*/
 
 
+.book_container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 5px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 5px;
+}
+
+
+
+/* Custom CSS class for red alert text */
+.alert-red {
+    color: red;
+}

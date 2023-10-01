@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,24 +26,24 @@
 
     <div class="logreg-box">
         <div class="form-box register">
-            <form name="myform" method="post" action="#">
+            <form name="myform" method="post" action="../assets/connect.php">
                 <div class="input-box">
-                    <input type="text" name="name" placeholder="example">
+                    <input type="text" name="Username" placeholder="example">
                     <label>Username</label>
                 </div>
 
                 <div class="input-box">
-                    <input type="email" required placeholder="youremail@example.com">
+                    <input type="email" name="Email" required placeholder="youremail@example.com">
                     <label>Email</label>
                 </div>
 
                 <div class="input-box">
-                    <input type="password" required placeholder="*************">
+                    <input type="password" name="Password" required placeholder="*************">
                     <label>Password</label>
                 </div>
 
                 <div class="input-box">
-                    <input type="password" required placeholder="*************">
+                    <input type="password" name="ConfirmPassword" required placeholder="*************">
                     <label>Confirm Password</label>
                 </div>
 
