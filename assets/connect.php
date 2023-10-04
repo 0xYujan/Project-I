@@ -59,16 +59,17 @@ if ($result->num_rows > 0) {
 
 // Hash the password for security (you should use a more secure hashing method)
 
-// $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
-// $hashedConfirmPassword = password_hash($ConfirmPassword, PASSWORD_DEFAULT);
+$hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
+$hashedConfirmPassword = password_hash($ConfirmPassword, PASSWORD_DEFAULT);
 
 // Insert user data into the database using prepared statement
 $insertQuery = "INSERT INTO register (Username, Email, Password, ConfirmPassword) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($insertQuery);
-$stmt->bind_param("ssss", $Username, $Email, $Password, $ConfirmPassword);
+$stmt->bind_param("ssss", $Username, $Email, $hashedPassword, $hashedConfirmPassword);
 
 if ($stmt->execute()) {
     echo "Registration successful";
+    header("Location: ../Log In/login.php");
 } else {
     echo "Error: Registration failed.";
     // Log or handle the error here

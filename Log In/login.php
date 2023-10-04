@@ -24,7 +24,7 @@
 
     <div class="logreg-box">
         <div class="form-box login">
-            <form action="authentication.php" method="post">
+            <form action="../assets/authentication.php" method="post">
                 <div class="input-box">
                     <input type="email" name="Email" required placeholder="youremail@example.com">
                     <label>Email</label>
