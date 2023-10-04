@@ -15,8 +15,9 @@ if ($conn->connect_error) {
 // Retrieve form data
 $Username = $_POST['Username'];
 $Email = $_POST['Email'];
-$Password = $_POST['Password'];
-$ConfirmPassword = $_POST['ConfirmPassword'];
+$Password = md5($_POST['Password']);
+$ConfirmPassword = md5($_POST['ConfirmPassword']);
+
 
 // Server-side validation
 if (empty($Username) || empty($Email) || empty($Password) || empty($ConfirmPassword)) {
@@ -44,9 +45,9 @@ if ($Password !== $ConfirmPassword) {
 }
 
 // Check if the user with the same email exists
-$checkUserQuery = "SELECT * FROM register WHERE Email = ?";
+$checkUserQuery = "SELECT * FROM register WHERE Email = ? AND Username = ?";
 $stmt = $conn->prepare($checkUserQuery);
-$stmt->bind_param("s", $Email);
+$stmt->bind_param("ss", $Email, $Username);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -57,23 +58,24 @@ if ($result->num_rows > 0) {
     exit;
 }
 
-// Hash the password for security (you should use a more secure hashing method)
-
-$hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
-$hashedConfirmPassword = password_hash($ConfirmPassword, PASSWORD_DEFAULT);
+// Hash the password and confirm password using MD5
+$hashedPassword = md5($Password);
+$hashedConfirmPassword = md5($ConfirmPassword);
 
 // Insert user data into the database using prepared statement
 $insertQuery = "INSERT INTO register (Username, Email, Password, ConfirmPassword) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($insertQuery);
-$stmt->bind_param("ssss", $Username, $Email, $hashedPassword, $hashedConfirmPassword);
+$stmt->bind_param("ssss", $Username, $Email, $Password, $ConfirmPassword);
 
 if ($stmt->execute()) {
-    echo "Registration successful";
-    header("Location: ../Log In/login.php");
+    // Registration successful
+    echo '<script>alert("Registration successful"); window.location.href="../Log In/login.php";</script>';
 } else {
-    echo "Error: Registration failed.";
+    // Registration failed
+    echo '<script>alert("Error: Registration failed.");</script>';
     // Log or handle the error here
 }
+
 
 // Close the prepared statement and database connection
 $stmt->close();

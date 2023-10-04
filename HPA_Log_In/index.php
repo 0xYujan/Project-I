@@ -87,8 +87,8 @@
             <br />
             <div class="near-you-btn">
 
-                <a href="#" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
-                <a href="#" class="button"><strong>Book Now</strong></a>
+                <a href="../Booking/Booking.php" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
+                <a href="../Booking/Booking.php" class="button"><strong>Book Now</strong></a>
             </div>
         </div>
     </div>
@@ -114,8 +114,8 @@
             <br />
             <div class="near-you-btn-2">
 
-                <a href="#" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
-                <a href="#" class="button"><strong>Book Now</strong></a>
+                <a href="../Booking/Booking.php" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
+                <a href="../Booking/Booking.php" class="button"><strong>Book Now</strong></a>
             </div>
         </div>
         <div class="near-you-img">
@@ -146,8 +146,8 @@
             <br />
             <div class="near-you-btn">
 
-                <a href="#" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
-                <a href="#" class="button"><strong>Book Now</strong></a>
+                <a href="../Booking/Booking.php" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
+                <a href="../Booking/Booking.php" class="button"><strong>Book Now</strong></a>
             </div>
         </div>
     </div>

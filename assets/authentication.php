@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $Email = $_POST['Email'];
-    $Password = $_POST['Password'];
+    $Password = md5($_POST['Password']); // Hash the entered password with MD5
 
     // Server-side validation
     if (empty($Email) || empty($Password)) {

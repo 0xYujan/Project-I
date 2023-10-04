@@ -50,6 +50,7 @@ body {
     transform: translateY(0);
     opacity: 1;
 }
+
 .login-signup a {
     position: relative;
     font-size: 16px;
@@ -79,30 +80,34 @@ body {
     opacity: 1;
 }
 
-.wrapper{
+.wrapper {
     margin: 150px auto;
     width: 90%;
 }
-.logo img{
+
+.logo img {
     height: 0px;
     width: 0px;
 }
-.wrapper img{
+
+.wrapper img {
     max-width: 600px;
     float: left;
     border: 3px solid white;
     border-radius: 20px;
     margin-right: 50px;
 }
-.text-box{
+
+.text-box {
     color: white;
 }
 
-.text-box h1{
+.text-box h1 {
     font-size: 40px;
     margin-bottom: 30px;
 }
-.text-box p{
+
+.text-box p {
     text-align: justify;
-    font-size: 25px;
+    font-size: 15px;
 }
