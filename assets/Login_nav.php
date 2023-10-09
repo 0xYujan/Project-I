@@ -91,7 +91,7 @@
         <a href="#">COURTS</a>
         <a href="#">ABOUT</a>
         <a href="#">CONTACT</a>
-        <a href="#">BOOKED LIST</a>
+        <a href="../Booked/index.php">BOOKED LIST</a>
     </nav>
     <a href="user_profile.php"> <!-- Replace "user_profile.php" with the actual URL of the user's profile page -->
         <img src="../assets/profile.png" class="user-pic">

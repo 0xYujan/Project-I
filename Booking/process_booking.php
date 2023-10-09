@@ -1,7 +1,20 @@
 <?php
 if (isset($_POST['proceed'])) {
     // Include database configuration
-    require_once('../assets/config.php');
+    // require_once('../assets/config.php');
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "futsal";
+
+    // Create connection
+    $connection = new mysqli($servername, $username, $password, $database);
+
+    // Check connection
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
 
     // Get form data and sanitize inputs
     $user = mysqli_real_escape_string($connection, $_POST['user']);

@@ -81,8 +81,8 @@
                         <div class="form-group">
                             <label for="time">Time:</label>
                             <select id="time" name="shift" required>
-                                <option value="6-7">6 TO 7 AM</option>
-                                <option value="7-8">7 TO 8 AM</option>
+                                <option value="6 TO 7 AM">6 TO 7 AM</option>
+                                <option value="7 TO 8 AM">7 TO 8 AM</option>
                                 <option value="8-9">8 TO 9 AM</option>
                                 <option value="9-10">9 TO 10 AM</option>
                                 <option value="10-11">10 TO 11 AM</option>

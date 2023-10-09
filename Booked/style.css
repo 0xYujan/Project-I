@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: rgb(250, 250, 250);
+    box-sizing: border-box;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgba(23, 23, 23, 1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+    color: #343a40;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+table,
+th,
+td {
+    border: 1px solid rgba(23, 23, 23, 1);
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: rgba(161, 254, 107, 1);
+    color: rgba(23, 23, 23, 1);
+}
+
+form {
+    margin-top: 30px;
+}
+
+input[type=text],
+input[type=date],
+input[type=email] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(23, 23, 23, 1);
+    border-radius: 5px;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: rgba(161, 254, 107, 1);
+    color: rgba(23, 23, 23, 1);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: rgba(161, 254, 107, 1);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
