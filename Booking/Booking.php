@@ -65,40 +65,56 @@
                 <h2>Booking Form</h2>
                 <div class="book_container">
                     <h3>Add Time</h3>
-                    <form action="add_time.php" method="post">
+                    <form action="process_booking.php" method="post">
+                        <div class="form-group">
+                            <label for="user">Your Name:</label>
+                            <input type="text" id="user" name="user" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pitch">Futsal Pitch:</label>
+                            <input type="text" id="pitch" name="pitch" required>
+                        </div>
                         <div class="form-group">
                             <label for="date">Date:</label>
-                            <input type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
+                            <input type="date" id="date" name="bookday" value="<?php echo date('Y-m-d'); ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="time">Time:</label>
-                            <select id="time" name="time" required>
-                                <option value="420">6 TO 7 AM</option>
-                                <option value="510">7 TO 8 AM</option>
-                                <option value="570">8 TO 9 AM</option>
-                                <option value="630">9 TO 10 AM</option>
-                                <option value="690">10 TO 11 AM</option>
-                                <option value="750">11 TO 12 AM</option>
-                                <option value="810">12 TO 1 PM</option>
-                                <option value="870">1 TO 2 PM</option>
-                                <option value="930">2 TO 3 PM</option>
-                                <option value="990">3 TO 4 PM</option>
-                                <option value="1050">4 TO 5 PM</option>
-                                <option value="1110">5 TO 6 PM</option>
-                                <option value="1170">6 TO 7 PM</option>
-                                <option value="1230">7 TO 8 PM</option>
-                                <option value="1290">8 TO 9 PM</option>
+                            <select id="time" name="shift" required>
+                                <option value="6-7">6 TO 7 AM</option>
+                                <option value="7-8">7 TO 8 AM</option>
+                                <option value="8-9">8 TO 9 AM</option>
+                                <option value="9-10">9 TO 10 AM</option>
+                                <option value="10-11">10 TO 11 AM</option>
+                                <option value="11-12">11 TO 12 AM</option>
+                                <option value="12-13">12 TO 1 PM</option>
+                                <option value="13-14">1 TO 2 PM</option>
+                                <option value="14-15">2 TO 3 PM</option>
+                                <option value="15-16">3 TO 4 PM</option>
+                                <option value="16-17">4 TO 5 PM</option>
+                                <option value="17-18">5 TO 6 PM</option>
+                                <option value="18-19">6 TO 7 PM</option>
+                                <option value="19-20">7 TO 8 PM</option>
+                                <option value="20-21">8 TO 9 PM</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Add Time">
+                            <label for="contact">Contact Number:</label>
+                            <input type="text" id="contact" name="contact" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="proceed" value="Add Time">
                         </div>
                     </form>
+
                 </div>
                 <button class="close-btn" id="close-btn">Close</button>
             </div>
         </div>
-
 
     </div>
     <!-- </div> -->
