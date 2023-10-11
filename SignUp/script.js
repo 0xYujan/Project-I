@@ -13,52 +13,52 @@ document.addEventListener("DOMContentLoaded", function () {
         if (usernameInput.value.trim() === '') {
             isValid = false;
             alert("Username is required.");
-            usernameInput.classList.add("input-error"); // Add the input-error class
-            event.preventDefault(); // Prevent form submission
+            usernameInput.classList.add("input-error");
+            event.preventDefault();
         } else {
-            usernameInput.classList.remove("input-error"); // Remove the input-error class
+            usernameInput.classList.remove("input-error");
         }
 
         // Validate email
         if (!validateEmail(emailInput.value)) {
             isValid = false;
             alert("Invalid email address.");
-            emailInput.classList.add("input-error"); // Add the input-error class
-            event.preventDefault(); // Prevent form submission
+            emailInput.classList.add("input-error");
+            event.preventDefault();
         } else {
-            emailInput.classList.remove("input-error"); // Remove the input-error class
+            emailInput.classList.remove("input-error");
         }
 
         // Validate password
         if (passwordInput.value.length < 8) {
             isValid = false;
             alert("Password must be at least 8 characters.");
-            passwordInput.classList.add("input-error"); // Add the input-error class
-            event.preventDefault(); // Prevent form submission
+            passwordInput.classList.add("input-error");
+            event.preventDefault();
         } else {
-            passwordInput.classList.remove("input-error"); // Remove the input-error class
+            passwordInput.classList.remove("input-error");
         }
 
         // Confirm password
         if (passwordInput.value !== confirmPasswordInput.value) {
             isValid = false;
             alert("Password and Confirm Password must match.");
-            confirmPasswordInput.classList.add("input-error"); // Add the input-error class
-            event.preventDefault(); // Prevent form submission
+            confirmPasswordInput.classList.add("input-error");
+            event.preventDefault();
         } else {
-            confirmPasswordInput.classList.remove("input-error"); // Remove the input-error class
+            confirmPasswordInput.classList.remove("input-error");
         }
 
         // Check terms and conditions
         if (!termsCheckbox.checked) {
             isValid = false;
             alert("You must agree to the terms & conditions.");
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault();
         }
 
-        // If the form is valid, you can proceed with submission
+
         if (isValid) {
-            // Remove any previous error messages
+
             const errorMessages = document.querySelectorAll(".error-message");
             errorMessages.forEach(function (element) {
                 element.remove();

@@ -124,7 +124,7 @@
                 <div class="footer-col">
                     <h4>Connect Us</h4>
                     <div class="social-links">
-                        <a href="www.facebook.com/sandip.ghiimire" class="fa fa-facebook"></a>
+                        <a class="fa fa-facebook"></a>
                         <a class="fa fa-twitter"></a>
                         <a class="fa fa-linkedin"></a>
                         <a class="fa fa-instagram"></a>
