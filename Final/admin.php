@@ -297,7 +297,7 @@
             </form>
         </table>
         <br>
-        <!-- <button type="button" class="button" data-toggle="modal" data-target="#myModal">Edit</button>
+        <button type="button" class="button" data-toggle="modal" data-target="#myModal">Edit</button>
 
         <div class="modal" id="myModal">
             <div class="modal-dialog">

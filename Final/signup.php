@@ -63,7 +63,7 @@
                 </div>
                 <button type="submit" class="btn" name="btnSubmit" value="Register" onclick="checkpw();" class="loginbutton"><strong>SIGN UP</strong></button>
                 <div class="login-register">
-                    <p>Already have an account? <a href="../Futsal-Reservation/login.php" class="register-link">Log In</a></p>
+                    <p>Already have an account? <a href="../Final/login.php" class="register-link">Log In</a></p>
                 </div><br><br><br>
             </form>
         </div>

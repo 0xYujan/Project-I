@@ -111,7 +111,7 @@
 
     </nav>
     <nav class="login-signup" >
-        <a href="../Futsal-Reservation/login.php">LOGIN</a>
-        <a href="../Futsal-Reservation/signup.php">SIGNUP</a>
+        <a href="../Final/login.php">LOGIN</a>
+        <a href="../Final/signup.php">SIGNUP</a>
     </nav>
 </header>

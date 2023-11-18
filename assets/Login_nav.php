@@ -117,7 +117,7 @@
 
 <body>
     <header class="header">
-    <a href="../Futsal-Reservation/index.php"><img src="../assets/logo.png" alt="Mega Futsal" class="logo" ></a>
+    <a href="../Final/index.php"><img src="../assets/logo.png" alt="Mega Futsal" class="logo" ></a>
 
         <nav class="navbar">
             <a class="navbar-brand" href="<?php
