@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futsal Booking System</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Log In/style.css">
+    <script src="javascript/jvs.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
 
     <?php
-    session_start();
+    // session_start();
     
     include("../assets/Logout_nav.php"); ?>
     <div class="row-line">
@@ -27,14 +28,14 @@
 
     <div class="logreg-box">
         <div class="form-box login">
-            <form action="../assets/authentication.php" method="post">
+            <form action="customer.php" method="post" id= "myForm">
                 <div class="input-box">
-                    <input type="email" name="Email" required placeholder="youremail@example.com">
-                    <label>Email</label>
+                    <input type="text" name="email" required placeholder="youremail@example.com">
+                    <label>Email/Username</label>
                 </div>
 
                 <div class="input-box">
-                    <input type="password" name="Password" required placeholder="***************">
+                    <input type="password" name="pwd" id="pwd" required placeholder="***************">
                     <label>Password</label>
                 </div>
 
@@ -42,9 +43,9 @@
                     <label><input type="checkbox"> Remember me</label>
                     <a href="#">Forgot Password</a>
                 </div>
-                <button type="submit" class="btn"><strong>LOGIN</strong></button>
+                <button type="submit" name="login" value="login" class="btn"><strong>LOGIN</strong></button>
                 <div class="login-register">
-                    <p>Don't have an account? <a href="../SignUp/signup.php" class="register-link">Sign Up</a></p>
+                    <p>Don't have an account? <a href="../Futsal-Reservation/signup.php" class="register-link">Sign Up</a></p>
                 </div>
             </form>
         </div>

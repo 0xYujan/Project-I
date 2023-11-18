@@ -113,8 +113,8 @@ body {
 
 .logreg-box .form-box {
     position: absolute;
-    top: 30%;
-    left: 60%;
+    top: 20%;
+    left: 55%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,7 +129,13 @@ body {
 
 .form-box .input-box {
     position: relative;
-    width: 340px;
+    width: 430px;
+    height: 45px;
+    margin: 50px 0;
+}
+.form-box .input-boxx {
+    position: relative;
+    width: 430px;
     height: 45px;
     margin: 50px 0;
 }
@@ -146,6 +152,20 @@ body {
     font-size: 15px;
 }
 
+.input-boxx input {
+    
+    padding: 5px;
+    width: 47%;
+    height: 100%;
+    color: #e4e4e4;
+    background: transparent;
+    border: 2px solid rgba(43, 43, 43, 1);
+    border-radius: 4px;
+    background-color: rgba(43, 43, 43, 1);
+    font-size: 15px;
+    
+}
+
 .input-box label {
     position: absolute;
     top: -30%;
@@ -153,6 +173,15 @@ body {
     transform: translateY(-50%);
     font-size: 20px;
 }
+.input-boxx label {
+    position: absolute;
+   top: -30%;
+   left: 0;
+   transform: translateY(-50%);
+    font-size: 20px;
+    
+}
+
 
 .form-box .terms-conditions {
     font-size: 14.5px;
@@ -166,8 +195,9 @@ body {
 }
 
 
+
 .btn {
-    width: 40%;
+    width: 25%;
     height: 45px;
     background: rgba(161, 254, 107, 1);
     border: none;

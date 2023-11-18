@@ -5,16 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page after login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../HPA_Log_In/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 
 <body>
+                     <!-- Problem line 19 -->
 <?php
     session_start();
-    include("../assets/Login_navU.php");
-    ?>
+    if(isset($_SESSION['email'])){
+        if($_SESSION['email'] == 'code') {
+            include("../assets/Login_nav.php");
+        } else {
+            include("../assets/Login_navU.php");
+        }
+    } else {
+        include("../assets/Logout_nav.php");
+    }
+?>
+    
     <div class="container">
         <div class="slides-wrapper">
             <div class="slider">

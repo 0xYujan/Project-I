@@ -92,17 +92,26 @@
         width: 15%;
         height: 1%;
     }
+    .logo{
+        height:30px;
+            width: 75px;
+            margin-right:200px;
+            margin-left : -100px;
+        }
 </style>
 
 <header class="header">
+<a href="index.php"><img src="../assets/logo.png" alt="Your Logo" class="logo" ></a>
+
     <nav class="navbar">
-        <a href="#">HOME</a>
-        <a href="#">COURTS</a>
-        <a href="#">ABOUT</a>
-        <a href="#">CONTACT</a>
+    <a href="services.php">SERVICES</a>
+                <a href="contact_us.php">CONTACT US</a>
+                <a href="about.php">ABOUT US</a>
+                <a href="booking.php">BOOKING</a>
+
     </nav>
-    <nav class="login-signup">
-        <a href="../Log In/login.php">LOGIN</a>
-        <a href="../SignUp/signup.php">SIGNUP</a>
+    <nav class="login-signup" >
+        <a href="../Futsal-Reservation/login.php">LOGIN</a>
+        <a href="../Futsal-Reservation/signup.php">SIGNUP</a>
     </nav>
 </header>

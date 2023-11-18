@@ -1,0 +1,68 @@
+.loginbutton
+{
+	background-color: green ;
+	border 			: 1px; 
+	position 		: relative; 
+	border-radius 	: 12px; 
+	padding 		: 5px 20px; 
+	font-size 		: 16px; 
+	font-style 		: arial;
+	box-shadow 		: #959595 0 2px 5px;
+}
+
+.resetbutton
+{
+	background-color: red ; 
+	position 		: relative; 
+	border 			: 1px;
+	border-radius 	: 12px; 
+	padding 		: 5px 20px; 
+	font-size 		: 16px; 
+	font-style 		: arial;
+	box-shadow 		: grey 0 2px 5px;
+}
+
+.sgnup_div
+{
+	 position 		: relative; 
+	 top 			: 50px;
+	 left 			: 25%; 
+	 border-radius 	: 16px;
+	 border 		: 2px solid grey;
+	 margin 		: 10px;
+	 box-shadow 	: 20px 20px 15px  #DCDCDC; 
+	 width 			: 50%; 
+	 
+	 overflow 		: auto; 
+	 padding 		: 3px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.myfont
+{
+	font-size: 20px;
+	color: solid grey;
+	font-style: bold;
+}					  

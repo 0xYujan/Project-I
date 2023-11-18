@@ -37,6 +37,8 @@
         .navbar {
             display: flex;
             align-items: center;
+            justify-content: flex-start; /* Align content to the left */
+            text-align: left;
         }
 
         .navbar a {
@@ -46,6 +48,7 @@
             text-decoration: none;
             font-weight: 500;
             position: relative;
+            white-space: nowrap; 
         }
 
         .navbar a::after {
@@ -109,37 +112,50 @@
         .logo{
             height:30px;
             width: 75px;
-            margin-right:400px;
+            margin-right:300px;
             margin-left : -110px;
         }
     </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body>
     <header class="header">
-    <a href="../Futsal-Reservation/index.php"><img src="../assets/logo.png" alt="Mega Futsal" class="logo" ></a>
-
+        <a href="index.php"><img src="../assets/logo.png" alt="Mega Futsal" class="logo" ></a>
         <nav class="navbar">
-            <a class="navbar-brand" href="<?php
-                session_start();
+
+            
+                <a href="services.php" class="nav-link">SERVICES</a>
+                <a href="contact_us.php" class="nav-link">CONTACT US</a>
+                <a href="about.php" class="nav-link">ABOUT US</a>
+                <a class="navbar-brand" href="<?php
+                // session_start();
                 if (isset($_SESSION['email'])) {
                     if ($_SESSION['email'] == 'code') echo 'admin.php';
                     else echo 'customer.php';
                 } else echo 'index.php';
-            ?>"></a>
-            <div class="navbar">
-                <div class="dropdown">
-                    <a href="#" class="nav-link">BOOKING</a>
-                    <ul>
-                        <li><a href="#approved">Approved</a></li>
-                        <li><a href="#pending">Pending</a></li>
-                    </ul>
-                </div>
-                <a href="#" class="nav-link" style="margin-right:200px;">MANAGE USERS</a>
+            ?>">PAYMENT</a>
+                <a href="booking.php" class="nav-link" style=" margin-right: 200px; ">BOOKING</a>
+              
                 <?php
-                if ($_SESSION['admin'] == 1) echo '
-                <div class="dropdown">
-                    <a href="#" class="nav-link">ADMIN</a>
+                if(!isset($_SESSION['email']))
+                echo '
+                <li class="dropdown">
+                  <a href="#" class="bx bxs-user bx-sm" data-toggle="dropdown"><span class="glyphicon glyphicon-user"> <b class="caret"></b></a></span>
+                  <ul class="dropdown-menu">
+                      <li>
+                          <a href="login.php">Login</a>
+                      </li>
+                      <li>
+                          <a href="signup.php">Register</a>
+                      </li>
+                  </ul>
+                </li>';
+                else
+                    echo '
+                    <div class="dropdown">
+                    <a href="#" class="nav-link">'.strtoupper($_SESSION['user']).'&nbsp;&nbsp;&nbsp;<i class="bx bxs-user" style="color: rgba(161, 254, 107, 1);"></i></a>
                     <ul>
                         <li><a href="destroy.php">Logout</a></li>
                     </ul>

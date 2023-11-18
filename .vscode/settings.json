@@ -1,0 +1,5 @@
+{
+    "files.autoSave": "onFocusChange",
+    "editor.formatOnType": false,
+    "audioCues.format": "never"
+}
