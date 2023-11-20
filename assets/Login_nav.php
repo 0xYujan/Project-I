@@ -26,6 +26,7 @@
             top: 0;
             left: 0;
             width: 100%;
+            height:15%;
             padding: 25px 12.5%;
             background: black;
             display: flex;
@@ -40,6 +41,7 @@
         }
 
         .navbar a {
+            top:15px;
             margin-right: 30px;
             font-size: 16px;
             color: rgba(255, 254, 254, 1);
@@ -82,19 +84,13 @@
         }
 
         .navbar .dropdown:hover ul {
+            top:40px;
             display: block;
+            padding:30px
         }
 
         .navbar .dropdown ul li {
             margin-bottom: 5px;
-        }
-
-        .user-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            margin-left: 30px;
         }
 
         nav {

@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body background="grey">
-	<div style=" color: #eee   ; background-image: url(img/backgr.jpg); height: 40%;" class ="sgnup_div">
+	<div style=" color: #eee; background-image: url(img/backgr.jpg); height: 40%;" class ="sgnup_div">
 
 	<form name="voucher" method="POST" action="customer.php" enctype="multipart/form-data">
 	<table border="0">

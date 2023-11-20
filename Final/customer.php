@@ -90,9 +90,11 @@ if(isset($_POST['btnSubmit']))
     }
     if ($flag)
     {
-      echo '<script language="javascript">';
-          echo 'alert("Email Already exists!!")';
-          echo '</script>';
+      echo '<script language="javascript">;
+           alert("Email Already exists!!");
+          window.location.replace("signup.php");
+          </script>';
+          
     } 
       else{  
       $connect->query("INSERT INTO `register`(`id`, `fname`, `lname`, `email`, `contact`, `password`)
@@ -193,35 +195,65 @@ if(isset($_POST['btnSubmit']))
               else if($shift == "6 TO 7 PM")
               $hr = 18 * 3600;
               else if($shift == "7 TO 8 PM")
-              $hr = 19 * 3600;
+              $hr = 21 * 3600;
             $timestamp = strtotime($bookday);
             $timestamp += $hr;
             $timecheck = $timestamp - 7200;
-
             
+            if ($timestamp > $t) {
+              $book_id = mysqli_real_escape_string($connect, $book_id); 
+          
+              $query = "UPDATE booking SET confirm_key = 100 WHERE id = '$book_id'";
+              
+          }
+            // $rushour = $timestamp+ 1; 
+
+            // if($rushour > $timecheck && $timestamp < $t){
+            //   $msg ='Expired Time value selected!!\n\n Boooked Time : '.date("H:i:s",$timestamp).'\n Current Time : '.date("Y/m/d @ H:i:s",$t);
+            //   echo '<SCRIPT language = "javascript">
+            //         alert(" Booking Failed !!!\n '.$msg.'");
+            //         window.location.replace("booking.php");
+            //         </SCRIPT>';
+            //       }else{
+            //         $msg ='Booked Successfully!!\n You need to Pay within 10 Minutes \n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
+            //         echo '<SCRIPT language = "javascript">
+            //               alert("'.$msg.'");
+            //               window.location.replace("booking.php");
+            //               </SCRIPT>';
+            //       $connect->query(
+            //           "INSERT INTO `booking` (`id`, `user`, `bookday`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
+            //            VALUES                (NULL,'$user','$bookday', '$shift','$contact', '$email', '$timecheck','1');");
+      
+                
+            //       $connect->close();
+            //       }
+
+
+           
+
             if($timestamp < $t)
-            {
-              $msg ='Expired Time value selected!!\n\n Boooked Time : '.date("H:i:s",$timestamp).'\n Current Time : '.date("Y/m/d @ H:i:s",$t);
+           
+              {
+                $msg ='Expired Time value selected!!\n\n Boooked Time : '.date("H:i:s",$timestamp).'\n Current Time : '.date("Y/m/d @ H:i:s",$t);
               echo '<SCRIPT language = "javascript">
                     alert(" Booking Failed !!!\n '.$msg.'");
                     window.location.replace("booking.php");
                     </SCRIPT>';
-            }
-            else
-            {
-              
-              $msg ='Booked Successfully!!\n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
-              echo '<SCRIPT language = "javascript">
-                    alert("'.$msg.'");
-                    window.location.replace("booking.php");
-                    </SCRIPT>';
-            $connect->query(
-                "INSERT INTO `booking` (`id`, `user`, `bookday`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
-                 VALUES                (NULL,'$user','$bookday', '$shift','$contact', '$email', '$timecheck','1');");
-
+              }else{
+                $msg ='Booked Successfully!!\n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
+                echo '<SCRIPT language = "javascript">
+                      alert("'.$msg.'");
+                      window.location.replace("booking.php");
+                      </SCRIPT>';
+              $connect->query(
+                  "INSERT INTO `booking` (`id`, `user`, `bookday`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
+                   VALUES                (NULL,'$user','$bookday', '$shift','$contact', '$email', '$timecheck','1');");
+  
+            
+              $connect->close();
+             }
+            
           
-            $connect->close();
-           }
           }
           else
           {
@@ -239,6 +271,7 @@ if(isset($_POST['btnSubmit']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>Home</title>
 
@@ -246,11 +279,13 @@ if(isset($_POST['btnSubmit']))
     th,td{
       padding:5px; 
     }
+
+    
   </style>
 
 
 </head>
-    <body style=" background-image: url(img/backgr.jpg);">
+    <body>
 
     <!-- Navigation -->
     <?php
@@ -262,9 +297,8 @@ if(isset($_POST['btnSubmit']))
       <div class = "container" style = "background-color: #eee;
                                         overflow:auto; 
                                         border:2px solid grey; 
-                                        margin: 20px; 
-                                        box-shadow: 10px 10px 5px #DCDCDC;
-                                        width:95%;">
+                                        width:95%;
+                                        margin: 20px;">
 
         <div class="row">
           
@@ -295,7 +329,7 @@ if(isset($_POST['btnSubmit']))
           	             <tr><td> Payment Deadline </td><td>   : '.date("Y/M/d (H:i:s)",$test['timecheck']).'</td></tr>
           	          </table>
           	          <input type = "hidden" name = "bookingid" value = '.$testarr[$i].'>
-          	          <input type = "submit" name = "pay" class="btn btn-success" value = "Payment">
+          	          <input type = "submit" name = "pay" class="success" value = "Payment">
                       </form>
                       </div>';
               $i++;
@@ -310,8 +344,8 @@ if(isset($_POST['btnSubmit']))
 
      <div class="col-md-6">
 
-     <div class="container" style="width:100%; position:relative; left:-10%;">
-      <h3> <u>Pending Approvals</u>&emsp;  &emsp; &emsp;   
+     <div class="container" style="width:100%; position:relative; left:-25%;">
+      <h3> <u>Pending Approvals</u>&emsp; &emsp;
             <u>Voucher images</u></h3>
         <div class="row">';
           $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =10";
@@ -322,7 +356,7 @@ if(isset($_POST['btnSubmit']))
           {
             $testarr[$i]=$test['id'];
             echo '
-            <div class ="col-md-6">
+          <div class ="col-md-6">
             <table border = "0">
             <tr><td> Booking ID   </td><td> : '.$test['id'].'</td></tr>
             <tr><td> Booked Date  </td><td> : '.$test['bookday'].'</td></tr>
@@ -353,9 +387,8 @@ if(isset($_POST['btnSubmit']))
                                         overflow:auto; 
                                         border:2px solid grey; 
                                         width:95%;
-                                        margin: 20px;
-                                        box-shadow: 10px 10px 5px #DCDCDC;">
-        <h3> <u>Approved Bookings</u>&emsp; &emsp; &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp;  &emsp;  
+                                        margin: 20px;">
+            <h3> <u>Approved Bookings</u>&emsp; &emsp; &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp;   &emsp;  
             <u>Voucher images:</u></h3>
         <div class="row">';
           $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =11";
@@ -398,11 +431,16 @@ if(isset($_POST['btnSubmit']))
                                         margin: 20px;">
 
                   <h3><u>Your Bookings History</u></h3><br>';
-      
+
+                  
+
+
                     $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =100";
                     $allbookings = $connect->query($test);
                     $i=0;
                     $testarr = array(); 
+
+
       while($test = $allbookings->fetch_assoc())
       {
             echo '<div class ="row">
@@ -421,11 +459,7 @@ if(isset($_POST['btnSubmit']))
       echo'</div>'; 
 
 ?>
-<script>
-    $('.carousel').carousel({
-        interval: 2000 //changes the speed
-    })
-    </script>
+
 </body>
 </html>
 <div style="position: relative; top: 5%;">

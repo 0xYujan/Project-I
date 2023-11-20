@@ -1,65 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+ <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <title>Home</title>
 
-    <style type="text/css">
-		 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style type="text/CSS">
+		th,td{
+			padding:5px; 
+		}
+	</style>
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Oxygen', sans-serif;
-}
-        body {
-            background-image: url(img/backgr.jpg);
-        }
-
-        th, td {
-            padding: 5px;
-        }
-
-        .container {
-            background-color: #eee;
-            overflow: auto;
-            border: 2px solid grey;
-            margin: 50px;
-            box-shadow: 10px 10px 5px #DCDCDC;
-            padding: 20px;
-        }
-
-        h3 {
-            background-color: #222;
-            color: #eee;
-            padding: 10px;
-        }
-
-        .button {
-            background-color: skyblue;
-            color: #222;
-            padding: 8px;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
-
 <body>
-    <?php
+<?php
     session_start();
     include("../assets/Login_nav.php");
 	date_default_timezone_set('Asia/Kathmandu');
 
 ?><br><br>
+
 <?php
-    if ($_SESSION['admin'] == 1) {
-        $connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
+
+	//session_start();
+	if($_SESSION['admin'] == 1 )
+	{
+		
+		$connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
 		require 'config.php';
 		
 		if(isset($_POST['approve']))
@@ -159,10 +131,10 @@
 			{
 				$email=$row['email'];
 				$bookingid=$row['id'];
-				// $deadLine=$row['timecheck']; 
-				// if ($deadLine = time())	
+				$deadLine=$row['timecheck']; 
+				// if ($deadLine-time()<13500)	
 				// 	$connect->query("delete from booking where id= '$bookingid'");
-				$que = "select id,lname from register where email = '$email'";
+				$que = "select id, lname from register where email = '$email'";
 				$sqlrun = $connect->query($que);
 				$user = $sqlrun->fetch_assoc();
 					echo "<br><div class = 'row' style = 'border:2px;'>
@@ -175,7 +147,7 @@
 					<tr><td> User ID </td><td>		: ".$user['id']."</td></tr>
 					<tr><td> Booked at </td><td> 	: ".date("Y/M/d (H:i:s)",$row['timecheck'])."</td></tr>
 					<tr><td> Shift </td><td> 		: ".$row['shift']."</td></tr>
-					
+				
 					<tr><td> Contact </td><td> 		: ".$row['contact']."</td></tr>
 					<tr><td> Email  </td><td> 		: ".$row['email']."</td></tr>
 					<tr><td > Payment deadLine </td><td> 	:<b style='background-color:orange;'>".date("Y  M  d ( H:i:s )",$deadLine)."</b></td></tr>
@@ -231,6 +203,7 @@
 					<tr><td> User ID </td><td>		: ".$user['id']."</td></tr>
 					<tr><td> Booked at </td><td> 	: ".date("Y/M/d (H:i:s)",$row['timecheck'])."</td></tr>
 					<tr><td> Shift </td><td> 		: ".$row['shift']."</td></tr>
+					
 					<tr><td> Contact </td><td> 		: ".$row['contact']."</td></tr>
 					<tr><td> Email  </td><td> 		: ".$row['email']."</td></tr>
 					<tr><td> Voucher no. </td><td> 	: ".$row['vno']."</td></tr>
@@ -255,73 +228,89 @@
 		 
 
 	} 
-	else {
-        echo "Admin not verified! Please login as Admin.";
-    }
-    ?>
+	else
+	{
+		echo "Admin not verified! Please login as Admin.";
+	}
 
-    <?php
 	$que="select * from register where email !='code';";
 	$run= $connect->query($que);
+	$count =mysqli_num_rows($run);
+	echo '
+	
+	<div style = "background-color: #eee;
+				overflow:auto; 
+				border:2px solid grey; 
+				margin: 50px; 
+				box-shadow: 10px 10px 5px #DCDCDC;"
+				class="container">
+	<a name="manage"><h3>Manage Users</a></h3><br><br>
+	<div class = "row">
+	<table align = "center" border="2" width="90%" >
+			<tr >
+				<th>User_id</th>
+				<th>First_name</th>
+				<th>Last_name</th>
+				
+				<th>Email_id</th>
+				<th>Contact_no.</th>
+			</tr>
+			
+			
+			<form name="edit" action="admin.php" name="delete" method="POST">';
 
-    // $connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Sever.");
-    // $que = "SELECT * FROM register WHERE email != 'code';";
-    // $run = $connect->query($que);
-    $count = mysqli_num_rows($run);
-    ?>
+	while($row = $run->fetch_assoc())
+	{
+		
+		echo "
+			
+				<tr >
+					<td>".$row['id']."</td>
+					<td>".$row['fname']."</td>
+					<td>".$row['lname']."</td>
+					
+					<td>".$row['email']."</td>
+					<td>".$row['contact']."</td>
+					
+				</tr>";
+	}
 
-    <div class="container">
-        <h3>Manage Users</h3>
-        <table border="2" width="90%">
-            <tr>
-                <th>User_id</th>
-                <th>First_name</th>
-                <th>Last_name</th>
-                <th>Email_id</th>
-                <th>Contact_no.</th>
-            </tr>
+	echo	'</table><br>
+	<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" style="background: skyblue; position:relative; left:6%; width:100px; color:#222;">Edit</button>
 
-            <form name="edit" action="admin.php" name="delete" method="POST">
-                <?php
-                while ($row = $run->fetch_assoc()) {
-                    echo "
-                        <tr>
-                            <td>".$row['id']."</td>
-                            <td>".$row['fname']."</td>
-                            <td>".$row['lname']."</td>
-                            <td>".$row['email']."</td>
-                            <td>".$row['contact']."</td>
-                        </tr>";
-                }
-                ?>
-            </form>
-        </table>
-        <br>
-        <button type="button" class="button" data-toggle="modal" data-target="#myModal">Edit</button>
-
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-image: url(img/backgr.jpg); color:#eee;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Enter the user_id to be deleted</h4>
-                    </div>
-                    <div class="modal-body" style="background-image: url(img/backgr.jpg);">
-                        <form name="delete" action="admin.php">
-                            <input type="text" name="del_id" value="">
-                            <input type="submit" value="Delete" name="delete">
-                        </form>
-                    </div>
-                    <div class="modal-footer" style="background-image: url(img/backgr.jpg);">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" >
+    <div class="modal-dialog" >
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: black; color:#eee;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Enter the user_id to be deleted</h4>
         </div>
+        <div class="modal-body" style=" background-image: url(img/backgr.jpg);">
+        <form name="delete" action="admin.php">
+          <input type= "text" name="del_id" value="">
+          <input type="submit" value="Delete" name="delete">
+         </form>
+        </div>
+        <div class="modal-footer" style=" background-image: url(img/backgr.jpg);">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div> 
+     </div>
+    </div>
+	
+	<p><h4><b>&emsp; Total no. of users = '."$count".'</h4></b></p>
+	</div>
+	</div>';
+	$connect->close();
+?>
+<!-- jQuery -->
 
-        <p>
-            <h4><b>Total no. of users = <?= $count ?></h4></b>
-        </p>
-    </div>    
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

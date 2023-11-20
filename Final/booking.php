@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <style>
         body {
-            background-image: url(img/backgr.jpg);
+         
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -19,23 +20,11 @@
             color: #eee;
         }
 
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 25px 12.5%;
-            background: black;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-
+      
         .content {
             position: relative;
             color: #eee;
-            left: 6%;
+            margin: 0 0 0 20%;
             font-size: 20px;
             margin-top: 150px;
         }
@@ -77,13 +66,13 @@
         }
 
         .success {
-            background-color: Green;
+            background-color: rgb(80, 238, 62);
             color: black;
             width: 8%;      
         }
 
         .warning{
-            background-color: yellow;
+            background-color: rgb(226, 238, 49);
             color: black;
             width: 8%;          
         }
@@ -110,7 +99,7 @@
 
         <form name="booking" action="booking.php" method="POST">
             <p><label>Select Date:</label>
-                <input type="date" name="bookdate" style="color:#222;" value="<?php
+                <input type="date" name="bookdate" style="color:#222; height:30px;" value="<?php
                                                                             if (isset($_POST['dSubmit']))
                                                                                 echo $_POST['bookdate'];
                                                                             else {
@@ -118,9 +107,9 @@
                                                                                 echo (date("Y-m-d", $today));
                                                                             }
                                                                             ?>" required>
-                <span class="btn-group-sm">
-                    <input type="submit" class="btn-success" value="Check" name="dSubmit" onclick="myFunction(bookdate.value);">
-                </span>
+                
+                    <input type="submit" class="btn-success" style="height:30px; width:55px" value="Check" name="dSubmit" onclick="myFunction(bookdate.value);">
+               
             </p>
         </form>
 
@@ -199,14 +188,15 @@ echo '</td>';
 				  <br>
 				<div style="position: relative; font-size:20px; float: right; top:-40px;" >
         			<b> Index: </b><br>
-        			<button type="button" class="btn btn-success" style="color: black; font-size:22px;"  align="center" class="btn btn-success">Available
+        			<button type="button" class="btn btn-success" style="color: black; font-size:22px;"  align="center">Available
        				<input type="radio" id="radio1" hidden disabled></button>
-       				<button type="button" class="btn btn-warning" style="color: black; font-size:22px;"  align="center" class="btn btn-success">Reserved
+       				<button type="button" class="btn btn-warning" style="color: black; font-size:22px;"  align="center">Reserved
         			<input type="radio" id="radio2" hidden disabled> </button>               
      			</div>
 				<br>
 				</div>';
 
+                
     include "footer.php";
 
     ?>

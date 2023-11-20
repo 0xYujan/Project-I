@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
 
@@ -58,6 +49,7 @@
             bottom: -6px;
             width: 100%;
             height: 2px;
+            
             background: rgba(161, 254, 107, 1);
             border-radius: 5px;
             transform: translateY(10px);
@@ -92,13 +84,7 @@
             margin-bottom: 5px;
         }
 
-        .user-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            margin-left: 30px;
-        }
+    
 
         nav {
             width: 100%;
@@ -112,7 +98,7 @@
         .logo{
             height:30px;
             width: 75px;
-            margin-right:300px;
+            margin-right:290px;
             margin-left : -110px;
         }
     </style>
@@ -136,7 +122,7 @@
                     else echo 'customer.php';
                 } else echo 'index.php';
             ?>">PAYMENT</a>
-                <a href="booking.php" class="nav-link" style=" margin-right: 200px; ">BOOKING</a>
+                <a href="booking.php" class="nav-link" style=" margin-right: 80px; ">BOOKING</a>
               
                 <?php
                 if(!isset($_SESSION['email']))
@@ -166,4 +152,3 @@
     </header>
 </body>
 
-</html>
