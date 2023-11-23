@@ -88,9 +88,9 @@
 <?php
     session_start();
     if(isset($_SESSION['email'])){
-            include("../assets/Login_navU.php");
+            include("../Final/Assets/in_user_nav.php");
     } else {
-        include("../assets/Logout_nav.php");
+        include("../Final/Assets/out_user_nav.php");
     }
     date_default_timezone_set('Asia/Kathmandu');
 ?>
@@ -140,11 +140,14 @@ if (isset($_POST['dSubmit'])) {
 
 
     $deadline = time();
-
+    $deadline2 = time()+ 600;
     $bktime = "delete from booking where timecheck < '$deadline' and confirm_key = 1";
+    $rushour = "DELETE FROM booking WHERE bookday < '$deadline2' AND confirm_key = 2";
     $connect->query($bktime);
+    $connect->query($rushour);
 
 
+ 
 $allshifts = array('6 TO 7 AM','7 TO 8 AM', '8 TO 9 AM', '9 TO 10 AM','10 TO 11 AM', '11 TO 12 AM' , '12 TO 1 PM' , '1 TO 2 PM', '2 TO 3 PM' , '3 TO 5 PM' ,'4 TO 5 PM' , '5 TO 6 PM' , '6 TO 7 PM' , '7 TO 8 PM');
 
 $test = "select shift from booking where bookday='" . $bookdate . "'";

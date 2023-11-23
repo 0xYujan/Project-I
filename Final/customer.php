@@ -195,52 +195,21 @@ if(isset($_POST['btnSubmit']))
               else if($shift == "6 TO 7 PM")
               $hr = 18 * 3600;
               else if($shift == "7 TO 8 PM")
-              $hr = 21 * 3600;
+              $hr = 20 * 3600;
             $timestamp = strtotime($bookday);
             $timestamp += $hr;
             $timecheck = $timestamp - 7200;
             
-            if ($timestamp > $t) {
-              $book_id = mysqli_real_escape_string($connect, $book_id); 
-          
-              $query = "UPDATE booking SET confirm_key = 100 WHERE id = '$book_id'";
-              
+            $rushour = $timecheck + 7120; 
+            
+            if ($timestamp < $t) {
+              $updateQuery  = "UPDATE booking SET confirm_key = 100 WHERE email ='".$_SESSION['email']."'"; 
+              $connect->query($updateQuery);
+
           }
-            // $rushour = $timestamp+ 1; 
 
-            // if($rushour > $timecheck && $timestamp < $t){
-            //   $msg ='Expired Time value selected!!\n\n Boooked Time : '.date("H:i:s",$timestamp).'\n Current Time : '.date("Y/m/d @ H:i:s",$t);
-            //   echo '<SCRIPT language = "javascript">
-            //         alert(" Booking Failed !!!\n '.$msg.'");
-            //         window.location.replace("booking.php");
-            //         </SCRIPT>';
-            //       }else{
-            //         $msg ='Booked Successfully!!\n You need to Pay within 10 Minutes \n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
-            //         echo '<SCRIPT language = "javascript">
-            //               alert("'.$msg.'");
-            //               window.location.replace("booking.php");
-            //               </SCRIPT>';
-            //       $connect->query(
-            //           "INSERT INTO `booking` (`id`, `user`, `bookday`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
-            //            VALUES                (NULL,'$user','$bookday', '$shift','$contact', '$email', '$timecheck','1');");
-      
-                
-            //       $connect->close();
-            //       }
-
-
-           
-
-            if($timestamp < $t)
-           
-              {
-                $msg ='Expired Time value selected!!\n\n Boooked Time : '.date("H:i:s",$timestamp).'\n Current Time : '.date("Y/m/d @ H:i:s",$t);
-              echo '<SCRIPT language = "javascript">
-                    alert(" Booking Failed !!!\n '.$msg.'");
-                    window.location.replace("booking.php");
-                    </SCRIPT>';
-              }else{
-                $msg ='Booked Successfully!!\n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
+            if($timecheck > $t){
+              $msg ='Booked Successfully!!\n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
                 echo '<SCRIPT language = "javascript">
                       alert("'.$msg.'");
                       window.location.replace("booking.php");
@@ -248,10 +217,29 @@ if(isset($_POST['btnSubmit']))
               $connect->query(
                   "INSERT INTO `booking` (`id`, `user`, `bookday`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
                    VALUES                (NULL,'$user','$bookday', '$shift','$contact', '$email', '$timecheck','1');");
-  
-            
               $connect->close();
-             }
+              }
+              else if($timestamp > $t && $rushour > $t){
+
+                $msg ='Booked Successfully!!\n You need to Pay within 10 Minutes \n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
+                        echo '<SCRIPT language = "javascript">
+                              alert("'.$msg.'");
+                              window.location.replace("booking.php");
+                              </SCRIPT>';
+                      $connect->query(
+                          "INSERT INTO `booking` (`id`, `user`, `bookday`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
+                           VALUES                (NULL,'$user','$bookday', '$shift','$contact', '$email', '$timecheck','2');");
+          
+                    
+                      $connect->close();
+              }else{
+            
+            $msg ='Expired Time value selected!!\n\n Boooked Time : '.date("H:i:s",$timestamp).'\n Current Time : '.date("Y/m/d @ H:i:s",$t);
+            echo '<SCRIPT language = "javascript">
+                  alert(" Booking Failed !!!\n '.$msg.'");
+                  window.location.replace("booking.php");
+                  </SCRIPT>';
+          }
             
           
           }
@@ -290,7 +278,7 @@ if(isset($_POST['btnSubmit']))
     <!-- Navigation -->
     <?php
     session_start();
-    include("../assets/Login_navU.php");
+    include("../Final/Assets/in_user_nav.php");
     ?>  
   
       <br>
@@ -309,7 +297,8 @@ if(isset($_POST['btnSubmit']))
             <?php
           	   $connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
     		       require 'config.php';
-          	   $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =1";
+          	   $test = "SELECT * FROM booking WHERE email = '" . $_SESSION['email'] . "' AND (confirm_key = 1 OR confirm_key = 2)";
+
 			     $allbookings = $connect->query($test);
 			     $i=0;
 			     $testarr = array(); 
@@ -427,7 +416,7 @@ if(isset($_POST['btnSubmit']))
                                         overflow:auto; 
                                         border:2px solid grey;  
                                         box-shadow: 10px 10px 5px #DCDCDC;
-                                        width:95%;
+                                        width:45%;
                                         margin: 20px;">
 
                   <h3><u>Your Bookings History</u></h3><br>';
@@ -444,7 +433,7 @@ if(isset($_POST['btnSubmit']))
       while($test = $allbookings->fetch_assoc())
       {
             echo '<div class ="row">
-            <table border = "0">
+            <table border = "1">
             <tr><td> Booking ID   </td><td> : '.$test['id'].'</td></tr>
             <tr><td> Booked Date  </td><td> : '.$test['bookday'].'</td></tr>
             <tr><td> Shift        </td><td> : '.$test['shift'].'</td></tr>

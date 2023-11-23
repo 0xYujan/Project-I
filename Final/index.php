@@ -16,12 +16,12 @@
     session_start();
     if(isset($_SESSION['email'])){
         if($_SESSION['email'] == 'code') {
-            include("../assets/Login_nav.php");
+            include("../Final/Assets/admin_nav.php");
         } else {
-            include("../assets/Login_navU.php");
+            include("../Final/Assets/in_user_nav.php");
         }
     } else {
-        include("../assets/Logout_nav.php");
+        include("../Final/Assets/out_user_nav.php");
     }
 ?>
     
@@ -163,7 +163,7 @@
             </div>
         </div>
     </div>
-    <?php include("../assets/footer.php"); ?>
+    <?php include("footer.php"); ?>
     <script src="script.js"></script>
 </body>
 

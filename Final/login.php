@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futsal Booking System</title>
-    <link rel="stylesheet" href="../Log In/style.css">
+    <link rel="stylesheet" href="../Final/CSS/login.css">
     <script src="javascript/jvs.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -15,7 +15,7 @@
     <?php
     // session_start();
     
-    include("../assets/Logout_nav.php"); ?>
+    include("../Final/Assets/out_user_nav.php"); ?>
     <div class="row-line">
         <div class="members-text">
             <h2>MEMBERS AREA</h2>

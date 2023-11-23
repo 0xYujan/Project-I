@@ -20,7 +20,7 @@
 <body>
 <?php
     session_start();
-    include("../assets/Login_nav.php");
+    include("../Final/Assets/admin_nav.php");
 	date_default_timezone_set('Asia/Kathmandu');
 
 ?><br><br>
@@ -304,6 +304,39 @@
 	<p><h4><b>&emsp; Total no. of users = '."$count".'</h4></b></p>
 	</div>
 	</div>';
+
+
+	echo '<div class = "container" style = "background-color: #eee;
+                                        overflow:auto; 
+                                        border:2px solid grey;  
+                                        box-shadow: 10px 10px 5px #DCDCDC;
+                                        width:45%;
+                                        margin: 50px;">
+
+                  <h3><u>Booked History</u></h3><br>';
+                    $test = "select * from booking where confirm_key =100";
+                    $allbookings = $connect->query($test);
+                    $i=0;
+                    $testarr = array(); 
+
+
+      while($test = $allbookings->fetch_assoc())
+      {
+            echo '<div class ="row">
+            <table border = "1">
+            <tr><td> Booking ID   </td><td> : '.$test['id'].'</td></tr>
+            <tr><td> Booked Date  </td><td> : '.$test['bookday'].'</td></tr>
+            <tr><td> Shift        </td><td> : '.$test['shift'].'</td></tr>
+            </table>
+            </div>'; 
+            $i++;   
+      }
+      if($i==0)
+      {
+        echo '<h5 style="color:#777;">No record!</h5>';
+      } 
+      echo'</div>'; 
+
 	$connect->close();
 ?>
 <!-- jQuery -->
