@@ -195,18 +195,14 @@ if(isset($_POST['btnSubmit']))
               else if($shift == "6 TO 7 PM")
               $hr = 18 * 3600;
               else if($shift == "7 TO 8 PM")
-              $hr = 20 * 3600;
+              $hr = 21 * 3600;
             $timestamp = strtotime($bookday);
             $timestamp += $hr;
             $timecheck = $timestamp - 7200;
-            
+            $rushtimecheck = $t + 600;
             $rushour = $timecheck + 7120; 
             
-            if ($timestamp < $t) {
-              $updateQuery  = "UPDATE booking SET confirm_key = 100 WHERE email ='".$_SESSION['email']."'"; 
-              $connect->query($updateQuery);
-
-          }
+            // $ctime = $t;
 
             if($timecheck > $t){
               $msg ='Booked Successfully!!\n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
@@ -215,8 +211,8 @@ if(isset($_POST['btnSubmit']))
                       window.location.replace("booking.php");
                       </SCRIPT>';
               $connect->query(
-                  "INSERT INTO `booking` (`id`, `user`, `bookday`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
-                   VALUES                (NULL,'$user','$bookday', '$shift','$contact', '$email', '$timecheck','1');");
+                  "INSERT INTO `booking` (`id`, `user`, `bookday`,`ctime`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
+                   VALUES                (NULL,'$user','$bookday', UNIX_TIMESTAMP() , '$shift','$contact', '$email', '$timecheck','1');");
               $connect->close();
               }
               else if($timestamp > $t && $rushour > $t){
@@ -227,8 +223,8 @@ if(isset($_POST['btnSubmit']))
                               window.location.replace("booking.php");
                               </SCRIPT>';
                       $connect->query(
-                          "INSERT INTO `booking` (`id`, `user`, `bookday`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
-                           VALUES                (NULL,'$user','$bookday', '$shift','$contact', '$email', '$timecheck','2');");
+                          "INSERT INTO `booking` (`id`, `user`, `bookday`, `ctime`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
+                           VALUES                (NULL,'$user','$bookday', UNIX_TIMESTAMP(),'$shift','$contact', '$email', '$rushtimecheck','2');");
           
                     
                       $connect->close();
@@ -240,12 +236,21 @@ if(isset($_POST['btnSubmit']))
                   window.location.replace("booking.php");
                   </SCRIPT>';
           }
-            
+          if ($timestamp < $t) {
+            $updateQuery  = "UPDATE booking SET confirm_key = 100 WHERE email ='".$_SESSION['email']."'"; 
+            $connect->query($updateQuery);
+
+        }
           
           }
           else
           {
-            header("location:login.php");
+            echo '<div>
+            <script language="javascript">
+              alert("Booking Failed !!!\n You need to Login First");
+              window.location.replace("login.php");
+            </script>
+          </div>';    
           }    
         }
       
@@ -259,7 +264,7 @@ if(isset($_POST['btnSubmit']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <title>Home</title>
 
@@ -334,7 +339,7 @@ if(isset($_POST['btnSubmit']))
      <div class="col-md-6">
 
      <div class="container" style="width:100%; position:relative; left:-25%;">
-      <h3> <u>Pending Approvals</u>&emsp; &emsp;
+      <h3> <u>Pending Approvals</u>&emsp; &emsp;  &emsp;  &emsp;
             <u>Voucher images</u></h3>
         <div class="row">';
           $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =10";
@@ -362,7 +367,7 @@ if(isset($_POST['btnSubmit']))
         }
         if($i==0)
         {
-          echo '<h5 style="color:#777;">No record!</h5>';
+          echo ' &emsp; &emsp;<h5 style="color:#777;">No record!</h5>';
         }  
         echo '<br></div> <!-- row --><br><br>';
         
@@ -377,7 +382,7 @@ if(isset($_POST['btnSubmit']))
                                         border:2px solid grey; 
                                         width:95%;
                                         margin: 20px;">
-            <h3> <u>Approved Bookings</u>&emsp; &emsp; &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp;   &emsp;  
+            <h3> <u>Approved Bookings</u>&emsp; &emsp; &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp;   &emsp;  
             <u>Voucher images:</u></h3>
         <div class="row">';
           $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =11";
@@ -449,10 +454,18 @@ if(isset($_POST['btnSubmit']))
 
 ?>
 
-</body>
-</html>
 <div style="position: relative; top: 5%;">
-<?php
+  <?php
 include"footer.php";
 ?>
 </div>
+
+<script>
+  function refreshContent() {
+    var newData = "New content fetched at: " + new Date();
+    $("#contentToUpdate").html(newData);
+  }
+  setInterval(refreshContent, 5000);
+</script>
+</body>
+</html>

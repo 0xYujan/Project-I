@@ -12,7 +12,7 @@
 
 <body>
 
-    <?php
+    <?php 
     // session_start();
     
     include("../Final/Assets/out_user_nav.php"); ?>

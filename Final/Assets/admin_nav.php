@@ -131,7 +131,7 @@
                         <li><a href="#pending">Pending</a></li>
                     </ul>
                 </div>
-                <a href="#" class="nav-link" style="margin-right:200px;">MANAGE USERS</a>
+                <a href="#manage" class="nav-link" style="margin-right:200px;">MANAGE USERS</a>
                 <?php
                 if ($_SESSION['admin'] == 1) echo '
                 <div class="dropdown">

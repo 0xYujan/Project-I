@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
 
     <style>
         body {
@@ -138,11 +139,11 @@ if (isset($_POST['dSubmit'])) {
     $bookdate = date('Y-m-d', $t);
 }
 
-
     $deadline = time();
-    $deadline2 = time()+ 600;
+    $deadline2 = time() - 600; // Buggggggggggggggggggggggggggggggg
+   
     $bktime = "delete from booking where timecheck < '$deadline' and confirm_key = 1";
-    $rushour = "DELETE FROM booking WHERE bookday < '$deadline2' AND confirm_key = 2";
+    $rushour = "DELETE FROM booking WHERE ctime < '$deadline2' AND confirm_key = 2";
     $connect->query($bktime);
     $connect->query($rushour);
 
@@ -203,7 +204,13 @@ echo '</td>';
     include "footer.php";
 
     ?>
-
+<script>
+  function refreshContent() {
+    var newData = "New content fetched at: " + new Date();
+    $("#contentToUpdate").html(newData);
+  }
+  setInterval(refreshContent, 5000);
+</script>
 </body>
 
 </html>
