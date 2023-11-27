@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Oxygen", sans-serif;
+}
+
+body {
+  background: rgba(23, 23, 23, 1);
+}
+
+.logreg-box .form-box {
+  position: absolute;
+
+  left: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  color: rgba(255, 254, 254, 1);
+  font-size: 30px;
+}
+
+.form-box .input-box {
+  position: relative;
+  width: 340px;
+  height: 45px;
+  margin: 50px 0;
+}
+
+.input-box input {
+  padding: 5px;
+  width: 400px;
+  height: 35px;
+  color: #e4e4e4;
+  background: transparent;
+  border: 2px solid rgba(43, 43, 43, 1);
+  border-radius: 4px;
+  background-color: rgba(43, 43, 43, 1);
+  font-size: 15px;
+}
+
+.input-box label {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.btn {
+  width: 40%;
+  height: 45px;
+  background: rgba(161, 254, 107, 1);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: rgba(23, 23, 23, 1);
+  font-weight: 500;
+  box-shadow: 0 0 10px rgba(23, 23, 23, 1);
+}
+.members-text {
+  position: absolute;
+  top: -88%;
+  left: 150%;
+  width: 200%;
+  height: 10%;
+  color: rgba(161, 254, 107, 1);
+  font-size: 10px;
+}
+.row-line {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  background: rgba(161, 254, 107, 1);
+  width: 15%;
+  height: 1%;
+}

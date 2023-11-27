@@ -6,6 +6,7 @@ date_default_timezone_set('Asia/Kathmandu');
 
 if(isset($_POST['vsubmit']))
 {
+  
   $vno= $_POST['vno'];
   $id=$_POST['bookingid'];
   $check = "select vno from booking";
@@ -40,20 +41,20 @@ if(isset($_POST['vsubmit']))
           alert("Voucher Submitted Successfully!\n Waiting For Admin Approval");
           window.location.replace("customer.php");
           </script>';
+         
+          $to = "yujanr4@gmail.com"; 
+          $subject = "New Voucher Submission";
+          $message = "A new voucher has been submitted for booking ID $id. \nPlease review and take necessary actions.\n";
+          $headers = "From: yujanr4@gmail.com";
+  
+          mail($to, $subject, $message, $headers);
+
     }
   }
 
 
 }
 
-// if(isset($_POST['login']))
-// {
-//   if($_POST['email'] == 'code' && $_POST['pwd'] == 'admin')
-//   {
-//     $_SESSION['admin'] = 1;
-//     header("location:admin.php");
-//   }
-// }
 
 if (isset($_POST['login'])) {
   $inputEmail = $_POST['email'];
@@ -71,8 +72,7 @@ if (isset($_POST['login'])) {
 
 if(isset($_POST['btnSubmit']))
   {
-  //$connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
-  //require 'config.php';
+
 
     $fname=$_POST['fname'];
     $user=$fname;
@@ -106,20 +106,29 @@ if(isset($_POST['btnSubmit']))
       $_SESSION['user']  = $fname;
       echo '<script language="javascript">';
           echo 'alert("User Registered Successfully!")';
-          echo '</script>';      
+          echo '</script>'; 
+
+    $to = $email; 
+    $subject = 'Registration Confirmation';
+
+    $emailBody = "Dear $fname,\n\n";
+    $emailBody .= "Thank you for registering with our Futsal Club!\n";
+    $emailBody .= "Your registration details:\n";
+    $emailBody .= "Name: $fname $lname\n";
+    $emailBody .= "Email: $email\n";
+    $emailBody .= "Contact: $contact\n";
+
+    
+    $mailed = mail($to, $subject, $emailBody, 'From: yujanr4@gmail.com');
+
       }
-    $connect->close();  // close Connection
+    $connect->close();
   
   }
 
   if(isset($_POST['login']))
   {
 
-    
-   // $connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
-    //require 'config.php';
-
-    
     $email = $_POST['email'];
     $pwd   = $_POST['pwd'];
 
@@ -201,8 +210,9 @@ if(isset($_POST['btnSubmit']))
             $timecheck = $timestamp - 7200;
             $rushtimecheck = $t + 600;
             $rushour = $timecheck + 7120; 
-            
+            $deadline = date("Y-m-d H:i:s", $timecheck);
             // $ctime = $t;
+            
 
             if($timecheck > $t){
               $msg ='Booked Successfully!!\n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
@@ -210,6 +220,23 @@ if(isset($_POST['btnSubmit']))
                       alert("'.$msg.'");
                       window.location.replace("booking.php");
                       </SCRIPT>';
+
+            $to = $_SESSION['email']; 
+            $subject = 'Booking Confirmation';
+        
+            $emailBody = "Dear $user,\n\n";
+            $emailBody .= "Thank you for booking with us!\n";
+            $emailBody .= "Your booking details:\n";
+            $emailBody .= "Shift: $shift\n";
+            $emailBody .= "Booked Date: $bookday\n";
+            $emailBody .= "Contact Number: $contact\n";
+            $emailBody .= "Email Id: $email\n";
+            $emailBody .= "Deadline: " . date("H:i:s", $timecheck) . "\n";
+            
+
+        
+            // Send the email
+            $mailed = mail($to, $subject, $emailBody, 'From: yujanr4@gmail.com'); 
               $connect->query(
                   "INSERT INTO `booking` (`id`, `user`, `bookday`,`ctime`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
                    VALUES                (NULL,'$user','$bookday', UNIX_TIMESTAMP() , '$shift','$contact', '$email', '$timecheck','1');");
@@ -222,6 +249,24 @@ if(isset($_POST['btnSubmit']))
                               alert("'.$msg.'");
                               window.location.replace("booking.php");
                               </SCRIPT>';
+                              $to = $_SESSION['email']; // Use the user's email as the recipient
+            $subject = 'Booking Confirmation';
+        
+            $emailBody = "Dear $user,\n\n";
+            $emailBody .= "Thank you for booking with us!\n You need to Pay within 10 Minutes else your booking will be deleted\n";
+            $emailBody .= "Your booking details:\n";
+            
+            $emailBody .= "Booked Date: $bookday\n";
+            $emailBody .= "Shift: $shift\n";
+            $emailBody .= "Contact Number: $contact\n";
+            $emailBody .= "Email Id: $email\n";
+
+            $deadline = $t + 600;
+            $emailBody .= "Deadline: " . date("H:i:s", $deadline) . "\n";
+        
+            // Send the email
+            $mailed = mail($to, $subject, $emailBody, 'From: yujanr4@gmail.com'); // Use your admin email as the sender
+        
                       $connect->query(
                           "INSERT INTO `booking` (`id`, `user`, `bookday`, `ctime`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
                            VALUES                (NULL,'$user','$bookday', UNIX_TIMESTAMP(),'$shift','$contact', '$email', '$rushtimecheck','2');");
@@ -237,7 +282,7 @@ if(isset($_POST['btnSubmit']))
                   </SCRIPT>';
           }
           if ($timestamp < $t) {
-            $updateQuery  = "UPDATE booking SET confirm_key = 100 WHERE email ='".$_SESSION['email']."'"; 
+            $updateQuery  = "UPDATE booking SET confirm_key = 100 WHERE email ='".$_SESSION['email']."' AND confirm_key = 10"; 
             $connect->query($updateQuery);
 
         }
@@ -289,7 +334,6 @@ if(isset($_POST['btnSubmit']))
       <br>
       <div class = "container" style = "background-color: #eee;
                                         overflow:auto; 
-                                        border:2px solid grey; 
                                         width:95%;
                                         margin: 20px;">
 
@@ -314,16 +358,17 @@ if(isset($_POST['btnSubmit']))
 				      $testarr[$i]=$test['id'];
 				
 			
-          	  echo '  <div  class="row" style="color:cyan;">
+          	  echo '  <div  class="row" >
                       <form method = "post" action = "payment.php">
          	            <table border = "0" >
           	             <tr><td> Booking ID       </td><td>   : '.$test['id'].'</td></tr>
           	             <tr><td> Booked Date      </td><td>   : '.$test['bookday'].'</td></tr>
                          <tr><td> Shift            </td><td>   : '.$test['shift'].'</td></tr>
+                         <tr><td> Amount           </td><td>   : Rs. 1200 </td></tr>
           	             <tr><td> Payment Deadline </td><td>   : '.date("Y/M/d (H:i:s)",$test['timecheck']).'</td></tr>
           	          </table>
           	          <input type = "hidden" name = "bookingid" value = '.$testarr[$i].'>
-          	          <input type = "submit" name = "pay" class="success" value = "Payment">
+          	          <input type = "submit" name = "pay" style="background-color:rgba(161, 254, 107, 1); border:none; width:150px; font-size:19px;  color: black;" value = "Payment"><br><br>
                       </form>
                       </div>';
               $i++;

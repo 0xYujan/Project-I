@@ -31,87 +31,70 @@
 	if($_SESSION['admin'] == 1 )
 	{
 		
-		$connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
-		require 'config.php';
+		$connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Server.");
+require 'config.php';
+
+if (isset($_POST['approve'])) {
+    $book_id = $_POST['bookingid'];
+    $approv = "update booking set confirm_key = 11 where id = '$book_id'";
+    $connect->query($approv);
+
+    // Fetch user email
+    $fetchUserQuery = "SELECT email FROM booking WHERE id = '$book_id'";
+    $approve = $connect->query($fetchUserQuery);
+
+    if ($approve) {
+        $user = $approve->fetch_assoc();
+        $to = $user['email'];
+        $subject = "Booking Approval";
+        $message = "Your booking with ID $book_id has been approved. Thank you!";
+        $headers = "From: yujanr4@gmail.com";
+
+        mail($to, $subject, $message, $headers);
+    }
+}
+
+if (isset($_POST['decline'])) {
+    $book_id = $_POST['bookingid'];
+    $declin = "delete from booking where id ='$book_id'";
+    $connect->query($declin);
+
+    // Fetch user email
+    $fetchUserQuery = "SELECT email FROM booking WHERE id = '$book_id'";
+    $decline = $connect->query($fetchUserQuery);
+
+    if ($decline) {
+        $user = $decline->fetch_assoc();
+        $to = $user['email'];
+        $subject = "Booking Declined";
+        $message = "Your booking with ID $book_id has been declined. Please contact us for more information.";
+        $headers = "From: yujanr4@gmail.com";
+
+        mail($to, $subject, $message, $headers);
+    }
+}
+
+if (isset($_POST['delete'])) {
+    $del_id = $_POST['del_id'];
+    $del = "delete from register where id ='$del_id'";
+    $connect->query($del);
+
+    // Fetch user email
+    $fetchUserQuery = "SELECT email FROM register WHERE id = '$del_id'";
+    $delete = $connect->query($fetchUserQuery);
+
+    if ($delete) {
+        $user = $delete->fetch_assoc();
+        $to = $user['email'];
+        $subject = "Account Deletion";
+        $message = "Your account has been deleted by the admin. If you have any concerns, please contact us.";
+        $headers = "From: yujanr4@gmail.com";
+
+        mail($to, $subject, $message, $headers);
+    }
+}
+
 		
-		if(isset($_POST['approve']))
-		{
-			$book_id = $_POST['bookingid'];
- 			$approv = "update booking set confirm_key = 11 where id = '$book_id'";
-			$connect->query($approv);
-
-			/* for sending mail to the user after confirmation!
-			$t=time()+13500;
-			$time=date("Y:M:d @ H:i:s",$t);
-
-			$to = $_POST['email'];
-			$subject = "My subject";
-			$txt = "Hi $user, \  Your booking has been approved for the date and time mentioned below.
-					Thank You! Mail sent @ $time";
-			$headers = "From: webmaster@example.com" . "\r\n" .
-					   "CC: somebodyelse@example.com";
-
-			mail($to,$subject,$txt,$headers);*/
-		}
-		if(isset($_POST['decline']))
-		{
-			$book_id = $_POST['bookingid'];
- 			$declin = "delete from booking where id ='$book_id'";
-			$connect->query($declin);
-		}
-
-		if(isset($_POST['delete']))
-		{
-			$del_id = $_POST['del_id'];
- 			$del = "delete from register where id ='$del_id'";
-			$connect->query($del);
-		}
-		//to show stats status
-		
-		/*
-		$userData = "select * from users;";
-		$itemData = "select * from items where status = 'Y';";
-		$orderData = "select * from orders;";
-		$noOfBidItem = "select itemId from items where type = 'B' and status = 'Y';";
-		$noOfBids = "select itemId from items where type = 'B' and custId is not null and status = 'Y';";
-
-		$userData = $connect->query($userData);
-		$itemData = $connect->query($itemData);
-		$orderData = $connect->query($orderData);
-		$noOfBidItem = $connect->query($noOfBidItem);
-		$noOfBids = $connect->query($noOfBids);
-
-		$noOfUsers = mysqli_num_rows($userData);
-		$noOfItems = mysqli_num_rows($itemData);
-		$noOfOrder = mysqli_num_rows($orderData);
-		$noOfBidItem  = mysqli_num_rows($noOfBidItem);
-		$noOfBids = mysqli_num_rows($noOfBids);
-
-		echo"
-				<div style = 'width : 70%; top : 10px; left : 10px;border:2px solid grey; margin: 50px; box-shadow: 10px 10px 5px 	#DCDCDC; '>
-					<table style ='padding: 5px;'>
-						<th>Stats</th>
-						<tr>
-							<td> Total no. of users </td>
-							<td> Total no. of items </td>
-							<td> Items on Bid </td>
-							<td> Items on Sale </td>
-							<td> Total no. of orders</td>
-							<td> Total no. of bids</td>
-						</tr>
-						<tr>
-							<td>".$noOfUsers."</td>
-							<td>".$noOfItems."</td>
-							<td>".$noOfBidItem."</td>
-							<td>".($noOfItems-$noOfBidItem)."</td>
-							<td>".$noOfOrder."</td>
-							<td>".$noOfBids."</td>
-						</tr>
-					</table>
-				</div>
-			";
-		*/
-
 	$reqPending = "select * from booking where confirm_key = 10;";
 	$res = $connect->query($reqPending);
 	$i=1;

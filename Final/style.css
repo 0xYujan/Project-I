@@ -1,13 +1,12 @@
-.loginbutton
-{
-	background-color: green ;
-	border 			: 1px; 
-	position 		: relative; 
-	border-radius 	: 12px; 
-	padding 		: 5px 20px; 
-	font-size 		: 16px; 
-	font-style 		: arial;
-	box-shadow 		: #959595 0 2px 5px;
+.loginbutton {
+  background-color: green;
+  border: 1px;
+  position: relative;
+  border-radius: 12px;
+  padding: 5px 20px;
+  font-size: 16px;
+  font-style: arial;
+  box-shadow: #959595 0 2px 5px;
 }
 
 /* .resetbutton
@@ -22,7 +21,7 @@
 	box-shadow 		: grey 0 2px 5px;
 } */
 
-.sgnup_div
+/* .sgnup_div
 {
 	 position 		: relative; 
 	 top 			: 50px;
@@ -35,34 +34,33 @@
 	 
 	 overflow 		: auto; 
 	 padding 		: 3px;
-}
+} */
 
 .tooltip {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
 }
 
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+  visibility: visible;
 }
 
-.myfont
-{
-	font-size: 20px;
-	color: solid grey;
-	font-style: bold;
-}					  
+.myfont {
+  font-size: 20px;
+  color: solid grey;
+  font-style: bold;
+}

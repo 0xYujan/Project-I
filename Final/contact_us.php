@@ -19,7 +19,7 @@ Subject: $topic
 $message
 EMAIL;
 
-    $header = "From: $email";
+    $header = "From: $name <$email>";
 
     if ($name == '' || $email == '' || $message == '') {
         $feedback = "Please fill all content";
@@ -41,6 +41,7 @@ EMAIL;
     }
 }
 ?>
+
 
 <!doctype html>
 <html>
@@ -186,9 +187,8 @@ EMAIL;
         <div class="form-box">
             <br> <br> <br> <br><div class="form-boxx">
   <div class="line"></div> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-  <p>Please Fill Out This Form And We Will Get In Touch With You Shortly.</p>
+  <p>Get In Touch</p>
 </div>
-
             <form name="contact" method="POST" action="">
                 <table cellspacing=0 cellpadding=1 border="0" align=center>
                     <tr>
@@ -199,20 +199,20 @@ EMAIL;
                             </div>
 <div class="input-box">
   <label for="name"><p>Your Name</label><br />
-  <span class="your_name"><input type="text" name="name" value="" size="40"  placeholder="Full name" required/></span> 
+  <span><input type="text" name="name" value="" size="40"  placeholder="Full name" required/></span> 
 </div>
 <div class="input-box">
   <label for="email"><p>Your Email</label><br />
-  <span class="your_email"><input type="email" name="email" value="" size="40"  placeholder="myname@example.com" required /></span> 
+  <span><input type="email" name="email" value="" size="40"  placeholder="myname@example.com" required /></span> 
 </div>
 <div class="input-box">
   <label for="contact"><p>Your contact number</lable><br />
-  <span class="Contact_num"><input type="tel" name="Contactnumber" value="" size="40" class="cnum_class" placeholder="Mobile or Phone"required/></span> </p><!--Input type="tel"--></b>
+  <span><input type="tel" name="Contactnumber" value="" size="40" placeholder="Mobile or Phone"required/></span> </p><!--Input type="tel"--></b>
 </div><br>
 <td valign=top>
 <div class="input-box" style="top:140px; margin-right: 200px;"><br><br>
   <label for="message" ><p>Your Message</label><br />
-  <span class="message"><textarea name="message" cols="50" rows="15"  placeholder="Message"></textarea></span> 
+  <span><textarea name="message" cols="50" rows="15"  placeholder="Message"></textarea></span> 
 </div><br><br><br><br><br><br><br><br>
 <p><input type="submit" value="Send" class="form_submit" name="btnsend"/></p>
                         </td>

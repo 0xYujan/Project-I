@@ -22,6 +22,7 @@
 														`contact` VARCHAR(15), 
 														`email` VARCHAR(30),
 														`timecheck` INT(30), 
+														`ctime` INT(30),
 														`confirm_key` INT(5), 
 														`vno` INT(20),
 														`vimgloc` VARCHAR(50),
