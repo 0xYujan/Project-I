@@ -71,6 +71,7 @@
 
         .navbar .dropdown {
             position: relative;
+            margin-left:70px;
         }
 
         .navbar .dropdown ul {
@@ -105,7 +106,7 @@
         .logo{
             height:30px;
             width: 75px;
-            margin-right:400px;
+            /* margin-right:400px; */
             margin-left : -110px;
         }
     </style>
@@ -116,22 +117,16 @@
     <a href="../Final/index.php"><img src="../Final/Assets/logo.png" alt="Mega Futsal" class="logo" ></a>
 
         <nav class="navbar">
-            <a class="navbar-brand" href="<?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    if ($_SESSION['email'] == 'code') echo 'admin.php';
-                    else echo 'customer.php';
-                } else echo 'index.php';
-            ?>"></a>
-            <div class="navbar">
                 <div class="dropdown">
-                    <a href="#" class="nav-link">BOOKING</a>
+                    <a href="admin.php" class="nav-link">BOOKING</a>
                     <ul>
-                        <li><a href="#approved">Approved</a></li>
-                        <li><a href="#pending">Pending</a></li>
+                        <li><a href="admin.php#approved">Approved</a></li>
+                        <li><a href="admin.php#pending">Pending</a></li>
                     </ul>
                 </div>
-                <a href="#manage" class="nav-link" style="margin-right:200px;">MANAGE USERS</a>
+                <a href="manage.php" class="nav-link">MANAGE USERS</a>
+                <a href="reserved.php" class="nav-link">RESERVED</a>
+                <a href="history.php" class="nav-link" style="margin-right:200px;">HISTORY</a>
                 <?php
                 if ($_SESSION['admin'] == 1) echo '
                 <div class="dropdown">
@@ -141,7 +136,7 @@
                     </ul>
                 </div>';
                 ?>
-            </div>
+            
         </nav>
     </header>
 </body>

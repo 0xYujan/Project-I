@@ -13,7 +13,7 @@
 <body>
 
     <?php 
-    // session_start();
+    session_start();
     
     include("../Final/Assets/out_user_nav.php"); ?>
     <div class="row-line">

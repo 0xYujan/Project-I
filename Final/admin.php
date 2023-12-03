@@ -20,10 +20,16 @@
 <body>
 <?php
     session_start();
-    include("../Final/Assets/admin_nav.php");
+   
+        if($_SESSION['admin'] == 1) {
+            include("../Final/Assets/admin_nav.php");
+    } else {
+        include("../Final/Assets/out_user_nav.php");
+    }
+
 	date_default_timezone_set('Asia/Kathmandu');
 
-?><br><br>
+?><br><br><br>
 
 <?php
 
@@ -159,7 +165,6 @@ if (isset($_POST['delete'])) {
 			$approved = "select * from booking where confirm_key = 11;";
 			$res = $connect->query($approved);
 			$i=1;
-			//This div is for the bookig requests that have been approved by the admin
 ?>
 				<div style = "background-color: #eee;
 				overflow:auto; 
@@ -206,127 +211,13 @@ if (isset($_POST['delete'])) {
 			$i--;
 			echo "<hr><h4> &emsp;
 			<b>Total number of approved bookings = ".$i." </b></h4></div>";
-		 
-
-		 
-
 	} 
 	else
 	{
-		echo "Admin not verified! Please login as Admin.";
-	}
-
-	$que="select * from register where email !='code';";
-	$run= $connect->query($que);
-	$count =mysqli_num_rows($run);
-	echo '
-	
-	<div style = "background-color: #eee;
-				overflow:auto; 
-				border:2px solid grey; 
-				margin: 50px; 
-				box-shadow: 10px 10px 5px #DCDCDC;"
-				class="container">
-	<a name="manage"><h3>Manage Users</a></h3><br><br>
-	<div class = "row">
-	<table align = "center" border="2" width="90%" >
-			<tr >
-				<th>User_id</th>
-				<th>First_name</th>
-				<th>Last_name</th>
-				
-				<th>Email_id</th>
-				<th>Contact_no.</th>
-			</tr>
-			
-			
-			<form name="edit" action="admin.php" name="delete" method="POST">';
-
-	while($row = $run->fetch_assoc())
-	{
-		
-		echo "
-			
-				<tr >
-					<td>".$row['id']."</td>
-					<td>".$row['fname']."</td>
-					<td>".$row['lname']."</td>
-					
-					<td>".$row['email']."</td>
-					<td>".$row['contact']."</td>
-					
-				</tr>";
-	}
-
-	echo	'</table><br>
-	<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" style="background: skyblue; position:relative; left:6%; width:100px; color:#222;">Edit</button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog" >
-    <div class="modal-dialog" >
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style=" background-color: black; color:#eee;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Enter the user_id to be deleted</h4>
-        </div>
-        <div class="modal-body" style=" background-image: url(img/backgr.jpg);">
-        <form name="delete" action="admin.php">
-          <input type= "text" name="del_id" value="">
-          <input type="submit" value="Delete" name="delete">
-         </form>
-        </div>
-        <div class="modal-footer" style=" background-image: url(img/backgr.jpg);">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div> 
-     </div>
-    </div>
-	
-	<p><h4><b>&emsp; Total no. of users = '."$count".'</h4></b></p>
-	</div>
-	</div>';
-
-
-	echo '<div class = "container" style = "background-color: #eee;
-                                        overflow:auto; 
-                                        border:2px solid grey;  
-                                        box-shadow: 10px 10px 5px #DCDCDC;
-                                        width:45%;
-                                        margin: 50px;">
-
-                  <h3><u>Booked History</u></h3><br>';
-                    $test = "select * from booking where confirm_key =100";
-                    $allbookings = $connect->query($test);
-                    $i=0;
-                    $testarr = array(); 
-
-
-      while($test = $allbookings->fetch_assoc())
-      {
-            echo '<div class ="row">
-            <table border = "1">
-            <tr><td> Booking ID   </td><td> : '.$test['id'].'</td></tr>
-            <tr><td> Booked Date  </td><td> : '.$test['bookday'].'</td></tr>
-            <tr><td> Shift        </td><td> : '.$test['shift'].'</td></tr>
-            </table>
-            </div>'; 
-            $i++;   
-      }
-      if($i==0)
-      {
-        echo '<h5 style="color:#777;">No record!</h5>';
-      } 
-      echo'</div>'; 
-
+		header("Location: 404-page.php");
+		exit(); 
+			}
 	$connect->close();
 ?>
-<!-- jQuery -->
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<!-- Bootstrap JS -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

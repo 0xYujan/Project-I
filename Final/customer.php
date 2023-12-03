@@ -281,11 +281,6 @@ if(isset($_POST['btnSubmit']))
                   window.location.replace("booking.php");
                   </SCRIPT>';
           }
-          if ($timestamp < $t) {
-            $updateQuery  = "UPDATE booking SET confirm_key = 100 WHERE email ='".$_SESSION['email']."' AND confirm_key = 10"; 
-            $connect->query($updateQuery);
-
-        }
           
           }
           else
@@ -450,8 +445,19 @@ if(isset($_POST['btnSubmit']))
             <div class ="col-md-6">
             <img src = '.$test['vimgloc'].' width="225" height="150">
             <br><br><br>
+
+            'echo '$t = time();
+            $timecheck = $test['timecheck'];
+            $timestamp = $timecheck + 10800;
+
+
+            if ($timestamp < $t) {
+              $updateQuery = "UPDATE booking SET confirm_key = 100 WHERE confirm_key = 10"; 
+              $connect->query($updateQuery);
+          }
             </div>';
             $i++;
+
         }
         if($i==0)
         {
