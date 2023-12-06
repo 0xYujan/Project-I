@@ -32,7 +32,7 @@
             margin: 50px;
             padding:0 0 20px 0;">';
 
-        $que = "select * from booking where confirm_key = 1;";
+        $que = "select * from booking where (confirm_key = 1 OR confirm_key = 2);";
         $run = $connect->query($que);
         $count = mysqli_num_rows($run);
 

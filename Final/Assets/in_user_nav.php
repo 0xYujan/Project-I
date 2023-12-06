@@ -131,6 +131,7 @@
                     <div class="dropdown">
                     <a href="#">'.strtoupper($_SESSION['user']).'&nbsp;&nbsp;&nbsp;<i class="bx bxs-user" style="color: rgba(161, 254, 107, 1);"></i></a>
                     <ul>
+                        <li><a href="User.php">Dashboard</a></li>
                         <li><a href="destroy.php">Logout</a></li>
                     </ul>
                 </div>';

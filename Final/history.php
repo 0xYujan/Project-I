@@ -24,50 +24,76 @@
 	date_default_timezone_set('Asia/Kathmandu');
 
 ?><br><br><br>
-    <?php
-    if($_SESSION['admin'] == 1 )
-    {
-        
-        
-        $connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Server.");
+
+<?php
+if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+    $connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Server.");
     require 'config.php';
+
+    $history = "select bookday from booking where confirm_key = 11";
+            $test = $connect->query($history);
+            $history=$test->fetch_assoc();  
+            $bookday=$history['bookday'];
     
-	echo '<div class = "container" style = "background-color: #eee;
-    overflow:auto; 
-    width:90%;
-    margin: 50px;">
+        $timestamp = strtotime($bookday);
+        $timecheck = $timestamp + 86400;
+        $t = time();
 
-<h3><u>Booked History</u></h3><br>';
-$test = "select * from booking where confirm_key =100";
-$allbookings = $connect->query($test);
-$i=0;
-$testarr = array(); 
+        if ($t >= $timecheck) {
+            $updateQuery = "UPDATE booking SET confirm_key = 100 WHERE confirm_key = 11";
+            $connect->query($updateQuery);
+        }
 
+        echo '<div class="container" style="background-color: #eee;
+                                        overflow:auto; 
+                                        border:2px solid grey;  
+                                        box-shadow: 10px 10px 5px #DCDCDC;
+                                        width:95%;
+                                        margin: 20px;">
+                  <h3><u>Your Bookings History</u></h3><br>';
 
-while($test = $allbookings->fetch_assoc())
-{
-echo '<div class ="row">
-<table border = "1">
-<tr><td> Booking ID   </td><td> : '.$test['id'].'</td></tr>
-<tr><td> Booked Date  </td><td> : '.$test['bookday'].'</td></tr>
-<tr><td> Shift        </td><td> : '.$test['shift'].'</td></tr>
-</table>
-</div>'; 
-$i++;   
-}
-if($i==0)
-{
-echo '<h5 style="color:#777;">No record!</h5>';
-} 
-echo'</div>'; 
-    
-}else{
+        $historyQuery = "select * from booking where confirm_key = 100";
+        $allbookings = $connect->query($historyQuery);
+
+        $i = 0;
+
+        echo '
+        <div class="container">
+            <table border="2" width="90%">
+                <tr>
+                    <th>History ID</th>
+                    <th>User</th>
+                    <th>Booking ID</th>
+                    <th>Booked Date</th>
+                    <th>Voucher Number</th>
+                </tr>';
+
+            while ($booking = $allbookings->fetch_assoc()) {
+            echo " <tr> 
+                            <td> " . $booking['id'] . "</td>
+                            <td> " . $booking['user'] . "</td>
+                            <td> " . $booking['id'] . "</td>
+                            <td> " . $booking['bookday'] . "</td>
+                            <td> " . $booking['vno'] . "</td>
+                    </tr";
+            $i++;
+        }
+
+        echo '</table>
+            </div>';
+
+        if ($i == 0) {
+            echo '<h5 style="color:#777;">No record!</h5>';
+        }
+
+        echo '</div>'; 
+        
+} else {
     header("Location: 404-page.php");
-    exit(); 
-    
-
+    exit();
 }
-$connect->close();?>
+?>
 
+      
 </body>
 </html>

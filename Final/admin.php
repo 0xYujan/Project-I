@@ -45,7 +45,6 @@ if (isset($_POST['approve'])) {
     $approv = "update booking set confirm_key = 11 where id = '$book_id'";
     $connect->query($approv);
 
-    // Fetch user email
     $fetchUserQuery = "SELECT email FROM booking WHERE id = '$book_id'";
     $approve = $connect->query($fetchUserQuery);
 
@@ -65,7 +64,6 @@ if (isset($_POST['decline'])) {
     $declin = "delete from booking where id ='$book_id'";
     $connect->query($declin);
 
-    // Fetch user email
     $fetchUserQuery = "SELECT email FROM booking WHERE id = '$book_id'";
     $decline = $connect->query($fetchUserQuery);
 
@@ -85,7 +83,6 @@ if (isset($_POST['delete'])) {
     $del = "delete from register where id ='$del_id'";
     $connect->query($del);
 
-    // Fetch user email
     $fetchUserQuery = "SELECT email FROM register WHERE id = '$del_id'";
     $delete = $connect->query($fetchUserQuery);
 
@@ -104,7 +101,6 @@ if (isset($_POST['delete'])) {
 	$reqPending = "select * from booking where confirm_key = 10;";
 	$res = $connect->query($reqPending);
 	$i=1;
-	//This div is for the booking requests that await approval from the admin
 ?>
 	<div style = "background-color: #eee;
 				overflow:auto; 

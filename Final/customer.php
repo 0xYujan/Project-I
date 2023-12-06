@@ -195,16 +195,16 @@ if(isset($_POST['btnSubmit']))
               $hr = 13 * 3600;
             else if($shift == "2 TO 3 PM")
               $hr = 14 * 3600;
-              else if($shift == "3 TO 5 PM")
+            else if($shift == "3 TO 5 PM")
               $hr = 15 * 3600;
-              else if($shift == "4 TO 5 PM")
+            else if($shift == "4 TO 5 PM")
               $hr = 16 * 3600;
             else if($shift == "5 TO 6 PM")
               $hr = 17 * 3600;
-              else if($shift == "6 TO 7 PM")
+            else if($shift == "6 TO 7 PM")
               $hr = 18 * 3600;
-              else if($shift == "7 TO 8 PM")
-              $hr = 21 * 3600;
+            else if($shift == "7 TO 8 PM")
+              $hr = 22 * 3600;
             $timestamp = strtotime($bookday);
             $timestamp += $hr;
             $timecheck = $timestamp - 7200;
@@ -213,10 +213,11 @@ if(isset($_POST['btnSubmit']))
             $deadline = date("Y-m-d H:i:s", $timecheck);
             // $ctime = $t;
             
+            
 
             if($timecheck > $t){
               $msg ='Booked Successfully!!\n Boooked Date & Time : '.date("Y/m/d @ H:i:s",$timestamp);
-                echo '<SCRIPT language = "javascript">
+              echo '<SCRIPT language = "javascript">
                       alert("'.$msg.'");
                       window.location.replace("booking.php");
                       </SCRIPT>';
@@ -249,7 +250,7 @@ if(isset($_POST['btnSubmit']))
                               alert("'.$msg.'");
                               window.location.replace("booking.php");
                               </SCRIPT>';
-                              $to = $_SESSION['email']; // Use the user's email as the recipient
+                              $to = $_SESSION['email']; 
             $subject = 'Booking Confirmation';
         
             $emailBody = "Dear $user,\n\n";
@@ -264,9 +265,7 @@ if(isset($_POST['btnSubmit']))
             $deadline = $t + 600;
             $emailBody .= "Deadline: " . date("H:i:s", $deadline) . "\n";
         
-            // Send the email
-            $mailed = mail($to, $subject, $emailBody, 'From: yujanr4@gmail.com'); // Use your admin email as the sender
-        
+            $mailed = mail($to, $subject, $emailBody, 'From: yujanr4@gmail.com'); 
                       $connect->query(
                           "INSERT INTO `booking` (`id`, `user`, `bookday`, `ctime`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
                            VALUES                (NULL,'$user','$bookday', UNIX_TIMESTAMP(),'$shift','$contact', '$email', '$rushtimecheck','2');");
@@ -363,7 +362,7 @@ if(isset($_POST['btnSubmit']))
           	             <tr><td> Payment Deadline </td><td>   : '.date("Y/M/d (H:i:s)",$test['timecheck']).'</td></tr>
           	          </table>
           	          <input type = "hidden" name = "bookingid" value = '.$testarr[$i].'>
-          	          <input type = "submit" name = "pay" style="background-color:rgba(161, 254, 107, 1); border:none; width:150px; font-size:19px;  color: black;" value = "Payment"><br><br>
+          	          <input type = "submit" name = "pay" style="background-color:rgba(161, 254, 107, 1); border:none; width:150px; font-size:19px;  color: black;" value = "Payment">
                       </form>
                       </div>';
               $i++;
@@ -446,63 +445,21 @@ if(isset($_POST['btnSubmit']))
             <img src = '.$test['vimgloc'].' width="225" height="150">
             <br><br><br>
 
-            'echo '$t = time();
-            $timecheck = $test['timecheck'];
-            $timestamp = $timecheck + 10800;
-
-
-            if ($timestamp < $t) {
-              $updateQuery = "UPDATE booking SET confirm_key = 100 WHERE confirm_key = 10"; 
-              $connect->query($updateQuery);
-          }
+           
             </div>';
             $i++;
 
         }
         if($i==0)
         {
-          echo '<h5 style="color:#777;">No record!</h5>';
+          echo '&emsp; &emsp;<h5 style="color:#777;">No record!</h5>';
         } 
         echo '<br></div> <!-- row --><br><br>
               </div> <!-- container -->
              
 
               <br><br>
-              <div class = "container" style = "background-color: #eee;
-                                        overflow:auto; 
-                                        border:2px solid grey;  
-                                        box-shadow: 10px 10px 5px #DCDCDC;
-                                        width:45%;
-                                        margin: 20px;">
-
-                  <h3><u>Your Bookings History</u></h3><br>';
-
-                  
-
-
-                    $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =100";
-                    $allbookings = $connect->query($test);
-                    $i=0;
-                    $testarr = array(); 
-
-
-      while($test = $allbookings->fetch_assoc())
-      {
-            echo '<div class ="row">
-            <table border = "1">
-            <tr><td> Booking ID   </td><td> : '.$test['id'].'</td></tr>
-            <tr><td> Booked Date  </td><td> : '.$test['bookday'].'</td></tr>
-            <tr><td> Shift        </td><td> : '.$test['shift'].'</td></tr>
-            </table>
-            </div>'; 
-            $i++;   
-      }
-      if($i==0)
-      {
-        echo '<h5 style="color:#777;">No record!</h5>';
-      } 
-      echo'</div>'; 
-
+              ';
 ?>
 
 <div style="position: relative; top: 5%;">
