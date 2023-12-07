@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-
-    <style>
+<style>
         @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
 
         * {
@@ -26,7 +17,6 @@
             top: 0;
             left: 0;
             width: 100%;
-            height:15%;
             padding: 25px 12.5%;
             background: black;
             display: flex;
@@ -35,28 +25,31 @@
             z-index: 100;
         }
 
-        .navbar {
+        .navbarr {
             display: flex;
             align-items: center;
+            justify-content: flex-start; /* Align content to the left */
+            text-align: left;
         }
 
-        .navbar a {
-            top:15px;
+        .navbarr a {
             margin-right: 30px;
             font-size: 16px;
             color: rgba(255, 254, 254, 1);
             text-decoration: none;
             font-weight: 500;
             position: relative;
+            white-space: nowrap; 
         }
 
-        .navbar a::after {
+        .navbarr a::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: -6px;
             width: 100%;
             height: 2px;
+            
             background: rgba(161, 254, 107, 1);
             border-radius: 5px;
             transform: translateY(10px);
@@ -64,17 +57,16 @@
             transition: .5s;
         }
 
-        .navbar a:hover::after {
+        .navbarr a:hover::after {
             transform: translateY(0);
             opacity: 1;
         }
 
-        .navbar .dropdown {
+        .navbarr .dropdown {
             position: relative;
-            margin-left:70px;
         }
 
-        .navbar .dropdown ul {
+        .navbarr .dropdown ul {
             display: none;
             position: absolute;
             top: 100%;
@@ -84,15 +76,15 @@
             padding: 10px;
         }
 
-        .navbar .dropdown:hover ul {
-            top:40px;
+        .navbarr .dropdown:hover ul {
             display: block;
-            padding:30px
         }
 
-        .navbar .dropdown ul li {
+        .navbarr .dropdown ul li {
             margin-bottom: 5px;
         }
+
+    
 
         nav {
             width: 100%;
@@ -106,31 +98,34 @@
         .logo{
             height:30px;
             width: 75px;
-            /* margin-right:400px; */
+            margin-right:290px;
             margin-left : -110px;
         }
     </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
 </head>
 
 <body>
     <header class="header">
-    <a href="../Final/index.php"><img src="../Final/Assets/logo.png" alt="Mega Futsal" class="logo" ></a>
+    <a href="#"><img src="../Final/Assets/logo.png" alt="Mega Futsal" class="logo" ></a>
 
-        <nav class="navbar">
+        <nav class="navbarr">
                 <div class="dropdown">
-                    <a href="admin.php" class="nav-link">BOOKING</a>
+                    <a href="admin.php" >BOOKING</a>
                     <ul>
                         <li><a href="admin.php#approved">Approved</a></li>
                         <li><a href="admin.php#pending">Pending</a></li>
                     </ul>
                 </div>
-                <a href="manage.php" class="nav-link">MANAGE USERS</a>
-                <a href="reserved.php" class="nav-link">RESERVED</a>
-                <a href="history.php" class="nav-link" style="margin-right:200px;">HISTORY</a>
+                <a href="manage.php" >MANAGE USERS</a>
+                <a href="reserved.php" >RESERVED</a>
+                <a href="history.php"  style="margin-right:200px;">HISTORY</a>
                 <?php
                 if ($_SESSION['admin'] == 1) echo '
                 <div class="dropdown">
-                    <a href="#" class="nav-link">ADMIN</a>
+                    <a href="#" >ADMIN</a>
                     <ul>
                         <li><a href="destroy.php">Logout</a></li>
                     </ul>

@@ -4,54 +4,66 @@ session_start();
 require 'config.php';
 date_default_timezone_set('Asia/Kathmandu');
 
-if(isset($_POST['vsubmit']))
-{
-  
-  $vno= $_POST['vno'];
-  $id=$_POST['bookingid'];
-  $check = "select vno from booking";
-  $run = $connect->query($check);
-  $flag=0;
-  while($test =$run->fetch_assoc())
-  {
-    if($vno == $test['vno'])
-    {
-      echo '<script language="javascript">
-          alert("Voucher not valid/already used!");
-          window.location.replace("customer.php");
-          </script>';
-      $flag=1;
-    }  
-  }
-  //$name = $_FILES['vimg']['name'];
-  $size = $_FILES['vimg']['size'];
-  $tmp_name = $_FILES['vimg']['tmp_name'];
-  $name= 'vouch'.$id.'.jpg';
-  
-  if(isset($tmp_name)&&$flag==0)
-  {
-    
-    $location = 'uploads/';
-    if(move_uploaded_file($tmp_name, $location.$name))
-    {
-      $name= 'vouch'.$id.'.jpg';
-      $confirm = "update booking set confirm_key = 10, vno = '$vno', vimgloc = '$location$name' where id = '$id' ";
-      $connect->query($confirm);
-      echo '<script language="javascript">
-          alert("Voucher Submitted Successfully!\n Waiting For Admin Approval");
-          window.location.replace("customer.php");
-          </script>';
-         
-          $to = "yujanr4@gmail.com"; 
-          $subject = "New Voucher Submission";
-          $message = "A new voucher has been submitted for booking ID $id. \nPlease review and take necessary actions.\n";
-          $headers = "From: yujanr4@gmail.com";
-  
-          mail($to, $subject, $message, $headers);
+if (isset($_POST['vsubmit'])) {
 
+    $details = "select id, fname from register where email='" . $_SESSION['email'] . "'";
+    $test = $connect->query($details);
+    $details = $test->fetch_assoc();
+    $user = $details['fname'];
+    $userid = $details['id'];
+
+    $vno = $_POST['vno'];
+    $id = $_POST['bookingid'];
+
+    // Use a prepared statement to prevent SQL injection
+    $check = $connect->prepare("SELECT vno FROM payment");
+    $check->execute();
+    $check->bind_result($existingVno);
+    $flag = 0;
+
+    // Check if the voucher number already exists in the payment table
+    while ($check->fetch()) {
+        if ($vno == $existingVno) {
+            echo '<script language="javascript">
+                alert("Voucher not valid/already used!");
+                window.location.replace("customer.php");
+                </script>';
+            $flag = 1;
+            break; // No need to continue checking once a match is found
+        }
     }
-  }
 
+    // Process the uploaded image
+    $name = 'vouch' . $id . '.jpg';
+    $location = 'uploads/';
+
+    if (isset($_FILES['vimg']['tmp_name']) && $flag == 0) {
+        $tmp_name = $_FILES['vimg']['tmp_name'];
+        $size = $_FILES['vimg']['size'];
+
+        // Use move_uploaded_file to move the uploaded file to the desired location
+        if (move_uploaded_file($tmp_name, $location . $name)) {
+            $confirm1 = "UPDATE booking SET confirm_key = 10 WHERE id = $id";
+
+            $confirm = "INSERT INTO payment (booking_id, user_id, vno, vimgloc, time) 
+                        VALUES ('$id', '$userid', '$vno', '$location$name', NOW())";
+            $connect->query($confirm1);
+            $connect->query($confirm);
+
+            echo '<script language="javascript">
+                alert("Voucher Submitted Successfully!\nWaiting For Admin Approval");
+                window.location.replace("customer.php");
+                </script>';
+
+            // Send email notification
+            $to = "yujanr4@gmail.com";
+            $subject = "New Voucher Submission";
+            $message = "A new voucher has been submitted for booking ID $id.\nPlease review and take necessary actions.\n";
+            $headers = "From: yujanr4@gmail.com";
+
+            mail($to, $subject, $message, $headers);
+        }
+    }
 
 }
 
@@ -60,15 +72,24 @@ if (isset($_POST['login'])) {
   $inputEmail = $_POST['email'];
   $inputPassword = $_POST['pwd'];
 
-  $validEmail = 'code';
-  $validPassword = 'admin';
+  // Assuming you have a database connection named $connect
+  $detailsQuery = "SELECT gmail, password FROM admin";
+  $result = $connect->query($detailsQuery);
 
-  if ($inputEmail === $validEmail && $inputPassword === $validPassword) {
-      $_SESSION['admin'] = 1;
-      header("location:admin.php");
-      exit();
-  } 
-}
+  // Check if there are any rows returned
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+          $validEmail = $row['gmail'];
+          $validPassword = $row['password'];
+
+          if ($inputEmail === $validEmail && $inputPassword === $validPassword) {
+              $_SESSION['admin'] = 1;
+              header("location: admin.php");
+              exit();
+          }
+      }
+    }
+  }
 
 if(isset($_POST['btnSubmit']))
   {
@@ -321,11 +342,14 @@ if(isset($_POST['btnSubmit']))
 
     <!-- Navigation -->
     <?php
-    session_start();
+    // session_start();
     include("../Final/Assets/in_user_nav.php");
     ?>  
   
-      <br>
+  <br>
+  <br>
+  <br>
+
       <div class = "container" style = "background-color: #eee;
                                         overflow:auto; 
                                         width:95%;
@@ -340,6 +364,12 @@ if(isset($_POST['btnSubmit']))
             <?php
           	   $connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
     		       require 'config.php';
+               $details = "select id, fname from register where email='".$_SESSION['email']."'";
+               $test = $connect->query($details);
+               $details=$test->fetch_assoc();
+               $user=$details['fname'];
+               $userid=$details['id'];
+
           	   $test = "SELECT * FROM booking WHERE email = '" . $_SESSION['email'] . "' AND (confirm_key = 1 OR confirm_key = 2)";
 
 			     $allbookings = $connect->query($test);
@@ -381,34 +411,36 @@ if(isset($_POST['btnSubmit']))
       <h3> <u>Pending Approvals</u>&emsp; &emsp;  &emsp;  &emsp;
             <u>Voucher images</u></h3>
         <div class="row">';
-          $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =10";
-          $allbookings = $connect->query($test);
-          $i=0;
-          $testarr = array(); 
-          while($test = $allbookings->fetch_assoc())
-          {
-            $testarr[$i]=$test['id'];
-            echo '
-          <div class ="col-md-6">
-            <table border = "0">
-            <tr><td> Booking ID   </td><td> : '.$test['id'].'</td></tr>
-            <tr><td> Booked Date  </td><td> : '.$test['bookday'].'</td></tr>
-            <tr><td> Shift        </td><td> : '.$test['shift'].'</td></tr>
-            <tr><td> Payment      </td><td> : Paid</td></tr>
-            <tr><td> Voucher no.  </td><td> : '.$test['vno'].'</td></tr>
-            </table>
-            </div>
-            <div class ="col-md-6">
-            <img src = '.$test['vimgloc'].' width="225" height="150">
-            <br><br><br>
-            </div>';
-            $i++;
-        }
-        if($i==0)
-        {
-          echo ' &emsp; &emsp;<h5 style="color:#777;">No record!</h5>';
-        }  
-        echo '<br></div> <!-- row --><br><br>';
+        $test = "SELECT b.id, b.bookday, b.shift, p.vno, p.vimgloc
+        FROM booking AS b
+        LEFT JOIN payment AS p ON b.id = p.booking_id
+        WHERE b.email = '" . $_SESSION['email'] . "' AND b.confirm_key = 10";
+
+$allbookings = $connect->query($test);
+$i = 0;
+$testarr = array();
+while ($test = $allbookings->fetch_assoc()) {
+   $testarr[$i] = $test['id'];
+   echo '
+   <div class="col-md-6">
+       <table border="0">
+           <tr><td> Booking ID   </td><td> : ' . $test['id'] . '</td></tr>
+           <tr><td> Booked Date  </td><td> : ' . $test['bookday'] . '</td></tr>
+           <tr><td> Shift        </td><td> : ' . $test['shift'] . '</td></tr>
+           <tr><td> Payment      </td><td> : Paid</td></tr>
+           <tr><td> Voucher no.  </td><td> : ' . $test['vno'] . '</td></tr>
+       </table>
+   </div>
+   <div class="col-md-6">
+       <img src="' . $test['vimgloc'] . '" width="225" height="150">
+       <br><br><br>
+   </div>';
+   $i++;
+}
+if ($i == 0) {
+   echo ' &emsp; &emsp;<h5 style="color:#777;">No record!</h5>';
+}
+echo '<br></div> <!-- row --><br><br>';
         
 
     echo '</div>  <!-- 2nd container--> 
@@ -424,7 +456,10 @@ if(isset($_POST['btnSubmit']))
             <h3> <u>Approved Bookings</u>&emsp; &emsp; &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp;   &emsp;  
             <u>Voucher images:</u></h3>
         <div class="row">';
-          $test = "select * from booking where email ='".$_SESSION['email']."' and confirm_key =11";
+        $test = "SELECT b.id, b.bookday, b.shift, p.vno, p.vimgloc
+        FROM booking AS b
+        LEFT JOIN payment AS p ON b.id = p.booking_id
+        WHERE b.email = '" . $_SESSION['email'] . "' AND b.confirm_key = 11";
           $allbookings = $connect->query($test);
           $i=0;
           $testarr = array(); 

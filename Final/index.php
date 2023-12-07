@@ -11,16 +11,13 @@
 </head>
 
 <body>
-                     <!-- Problem line 19 -->
+
 <?php
     session_start();
     if(isset($_SESSION['email'])){
-        if($_SESSION['email'] == 'code') {
-            include("../Final/Assets/admin_nav.php");
-        } else {
-            include("../Final/Assets/in_user_nav.php");
+        include("../Final/Assets/in_user_nav.php");
         }
-    } else {
+     else {
         include("../Final/Assets/out_user_nav.php");
     }
 ?>

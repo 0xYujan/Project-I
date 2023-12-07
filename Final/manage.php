@@ -35,7 +35,7 @@ if($_SESSION['admin'] == 1 )
     $connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Server.");
 require 'config.php';
 
-$que="select * from register where email !='code';";
+$que="select * from register";
 $run= $connect->query($que);
 $count =mysqli_num_rows($run);
 echo '

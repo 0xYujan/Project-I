@@ -19,15 +19,12 @@
 </head>
 <body>
 <?php
+	date_default_timezone_set('Asia/Kathmandu');
     session_start();
    
         if($_SESSION['admin'] == 1) {
             include("../Final/Assets/admin_nav.php");
-    } else {
-        include("../Final/Assets/out_user_nav.php");
     }
-
-	date_default_timezone_set('Asia/Kathmandu');
 
 ?><br><br><br>
 
@@ -64,18 +61,18 @@ if (isset($_POST['decline'])) {
     $declin = "delete from booking where id ='$book_id'";
     $connect->query($declin);
 
-    $fetchUserQuery = "SELECT email FROM booking WHERE id = '$book_id'";
-    $decline = $connect->query($fetchUserQuery);
+    // $fetchUserQuery = "SELECT email FROM booking WHERE id = '$book_id'";
+    // $decline = $connect->query($fetchUserQuery);
 
-    if ($decline) {
-        $user = $decline->fetch_assoc();
-        $to = $user['email'];
-        $subject = "Booking Declined";
-        $message = "Your booking with ID $book_id has been declined. Please contact us for more information.";
-        $headers = "From: yujanr4@gmail.com";
+    // if ($decline) {
+    //     $user = $decline->fetch_assoc();
+    //     $to = $user['email'];
+    //     $subject = "Booking Declined";
+    //     $message = "Your booking with ID $book_id has been declined. Please contact us for more information.";
+    //     $headers = "From: yujanr4@gmail.com";
 
-        mail($to, $subject, $message, $headers);
-    }
+    //     mail($to, $subject, $message, $headers);
+    // }
 }
 
 if (isset($_POST['delete'])) {
@@ -98,7 +95,9 @@ if (isset($_POST['delete'])) {
 }
 
 		
-	$reqPending = "select * from booking where confirm_key = 10;";
+$reqPending = "SELECT booking.*, payment.vno, payment.vimgloc FROM booking
+LEFT JOIN payment ON booking.id = payment.booking_id
+WHERE booking.confirm_key = 10;";
 	$res = $connect->query($reqPending);
 	$i=1;
 ?>
@@ -119,6 +118,7 @@ if (isset($_POST['delete'])) {
 				$deadLine=$row['timecheck']; 
 				// if ($deadLine-time()<13500)	
 				// 	$connect->query("delete from booking where id= '$bookingid'");
+				
 				$que = "select id, lname from register where email = '$email'";
 				$sqlrun = $connect->query($que);
 				$user = $sqlrun->fetch_assoc();
@@ -145,7 +145,7 @@ if (isset($_POST['delete'])) {
 					<input type = 'submit' name = 'decline' class='button' value = 'Decline'>
 					</form> </div>
 					<div class='col-md-6'>
-					<img src = ".$row['vimgloc']." height = '300' width = '450'>
+					<img src = ".$row['vimgloc']." height = '250' width = '350'>
 					</div>
 					</div><br><br>";
 				$i++;
@@ -158,8 +158,10 @@ if (isset($_POST['delete'])) {
 
 			
 
-			$approved = "select * from booking where confirm_key = 11;";
-			$res = $connect->query($approved);
+				$approved = "SELECT booking.*, payment.vno, payment.vimgloc FROM booking
+				LEFT JOIN payment ON booking.id = payment.booking_id
+				WHERE booking.confirm_key = 11;";			
+				$res = $connect->query($approved);
 			$i=1;
 ?>
 				<div style = "background-color: #eee;
@@ -198,7 +200,7 @@ if (isset($_POST['delete'])) {
 					<input type = 'submit' name = 'decline' class='button' value = 'Cancel Booking'>
 					</form> </div>
 					<div class='col-md-6'>
-						<img src = ".$row['vimgloc']." height = '300' width = '450'>
+					<img src = ".$row['vimgloc']." height = '250' width = '350'>
 					</div>
 					</div><br><br>";
 					
