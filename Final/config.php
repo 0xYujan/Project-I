@@ -19,6 +19,7 @@
 		
 		$que = "CREATE TABLE IF NOT EXISTS `booking` (
 			`id` INT(10) NOT NULL AUTO_INCREMENT,
+			`user_id` INT(10) NOT NULL,
 			`user` VARCHAR(10) NOT NULL,
 			`bookday` DATE NOT NULL,
 			`shift` VARCHAR(10) NOT NULL,
@@ -27,8 +28,10 @@
 			`timecheck` INT(30),
 			`ctime` INT(30),
 			`confirm_key` INT(5),
-			PRIMARY KEY (`id`)
+			PRIMARY KEY (`id`),
+			FOREIGN KEY (`user_id`) REFERENCES `register`(`id`)
 		) ENGINE = InnoDB;";
+
 		$connect->query($que);
 
 		$que = "CREATE TABLE IF NOT EXISTS `payment` (
