@@ -56,10 +56,11 @@
 		$connect->query($adminTable);
 
 
-		$adminInsert = "INSERT INTO `admin` (`id`, `username`, `gmail`, `password`) VALUES
-    (1, 'Yujan', 'yujan@gmail.com', 'yujan@gmail.com'),
-    (2, 'Sandip', 'sandip@gmail.com', 'sandip@gmail.com');";
+		$adminInsert = "INSERT INTO `admin` (`username`, `gmail`, `password`) VALUES
+    ('Yujan', 'yujan@gmail.com', 'yujan@gmail.com'),
+    ('Sandip', 'sandip@gmail.com', 'sandip@gmail.com');";
 
-mysqli_query($connect, $adminInsert);
+
+	mysqli_query($connect, $adminInsert);
 
 ?>
