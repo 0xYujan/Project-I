@@ -142,7 +142,7 @@ if (isset($_POST['dSubmit'])) {
     $deadline = time();
     $deadline2 = time() - 600; // Buggggggggggggggggggggggggggggggg
    
-    $bktime = "delete from booking where timecheck < '$deadline' and confirm_key = 1";
+    $bktime = "DELETE FROM booking WHERE timecheck < '$deadline' and confirm_key = 1";
     $rushour = "DELETE FROM booking WHERE ctime < '$deadline2' AND confirm_key = 2";
     $connect->query($bktime);
     $connect->query($rushour);

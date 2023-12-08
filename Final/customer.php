@@ -21,7 +21,6 @@ if (isset($_POST['vsubmit'])) {
     $check->bind_result($existingVno);
     $flag = 0;
 
-    // Check if the voucher number already exists in the payment table
     while ($check->fetch()) {
         if ($vno == $existingVno) {
             echo '<script language="javascript">
@@ -29,7 +28,7 @@ if (isset($_POST['vsubmit'])) {
                 window.location.replace("customer.php");
                 </script>';
             $flag = 1;
-            break; // No need to continue checking once a match is found
+            break; 
         }
     }
 
@@ -55,7 +54,6 @@ if (isset($_POST['vsubmit'])) {
                 window.location.replace("customer.php");
                 </script>';
 
-            // Send email notification
             $to = "yujanr4@gmail.com";
             $subject = "New Voucher Submission";
             $message = "A new voucher has been submitted for booking ID $id.\nPlease review and take necessary actions.\n";
@@ -72,11 +70,9 @@ if (isset($_POST['login'])) {
   $inputEmail = $_POST['email'];
   $inputPassword = $_POST['pwd'];
 
-  // Assuming you have a database connection named $connect
   $detailsQuery = "SELECT gmail, password FROM admin";
   $result = $connect->query($detailsQuery);
 
-  // Check if there are any rows returned
   if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
           $validEmail = $row['gmail'];
@@ -192,11 +188,12 @@ if(isset($_POST['btnSubmit']))
             $shift=$_POST['shift'];
             
             $t=time();
-            $details = "select contact,fname from register where email='".$email."'";
+            $details = "select id,contact,fname from register where email='".$email."'";
             $test = $connect->query($details);
             $details=$test->fetch_assoc();
             $user=$details['fname'];
             $contact=$details['contact'];
+            $user_id =$details['id'];
 
             if($shift == "6 TO 7 AM")
               $hr = 6 * 3600;
@@ -260,8 +257,8 @@ if(isset($_POST['btnSubmit']))
             // Send the email
             $mailed = mail($to, $subject, $emailBody, 'From: yujanr4@gmail.com'); 
               $connect->query(
-                  "INSERT INTO `booking` (`id`, `user`, `bookday`,`ctime`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
-                   VALUES                (NULL,'$user','$bookday', UNIX_TIMESTAMP() , '$shift','$contact', '$email', '$timecheck','1');");
+                  "INSERT INTO `booking` (`id`,  `user`, `bookday`,`ctime`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 
+                   VALUES                (NULL, '$user','$bookday', UNIX_TIMESTAMP() , '$shift','$contact', '$email', '$timecheck','1');");
               $connect->close();
               }
               else if($timestamp > $t && $rushour > $t){

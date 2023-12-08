@@ -2,9 +2,9 @@
 	
 		$connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
 		
-		$dbstart = "create database if not exists Futsal;";
+		$dbstart = "create database if not exists Futsal1;";
 		$connect->query($dbstart);
-		mysqli_select_db($connect , "Futsal");
+		mysqli_select_db($connect , "Futsal1");
 
 		$que = "CREATE TABLE IF NOT EXISTS `register` (
 			`id` INT(10) NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,7 @@
 		
 		$que = "CREATE TABLE IF NOT EXISTS `booking` (
 			`id` INT(10) NOT NULL AUTO_INCREMENT,
-			`user_id` INT(10) NOT NULL,
+		
 			`user` VARCHAR(10) NOT NULL,
 			`bookday` DATE NOT NULL,
 			`shift` VARCHAR(10) NOT NULL,
@@ -28,8 +28,7 @@
 			`timecheck` INT(30),
 			`ctime` INT(30),
 			`confirm_key` INT(5),
-			PRIMARY KEY (`id`),
-			FOREIGN KEY (`user_id`) REFERENCES `register`(`id`)
+			PRIMARY KEY (`id`)
 		) ENGINE = InnoDB;";
 
 		$connect->query($que);
@@ -59,11 +58,12 @@
 		$connect->query($adminTable);
 
 
-		$adminInsert = "INSERT INTO `admin` (`username`, `gmail`, `password`) VALUES
-    ('Yujan', 'yujan@gmail.com', 'yujan@gmail.com'),
-    ('Sandip', 'sandip@gmail.com', 'sandip@gmail.com');";
 
+		////////////////////     ADMN INSERT  /////////////////////////
 
-	mysqli_query($connect, $adminInsert);
+		/*
+			INSERT INTO `admin` (`username`, `gmail`, `password`) VALUES
+				('Yujan', 'yujan@gmail.com', 'yujan@gmail.com'),
+				('Sandip', 'sandip@gmail.com', 'sandip@gmail.com'); */
 
 ?>

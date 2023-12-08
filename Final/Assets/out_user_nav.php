@@ -26,7 +26,7 @@
         z-index: 100;
     }
 
-    .navbar a {
+    .navbarr a {
         position: relative;
         font-size: 16px;
         color: rgba(255, 254, 254, 1);
@@ -36,7 +36,7 @@
 
     }
 
-    .navbar a::after {
+    .navbarr a::after {
         content: '';
         position: absolute;
         left: 0;
@@ -50,7 +50,7 @@
         transition: .5s;
     }
 
-    .navbar a:hover::after {
+    .navbarr a:hover::after {
         transform: translateY(0);
         opacity: 1;
     }
@@ -103,7 +103,7 @@
 <header class="header">
 <a href="index.php"><img src="../Final/Assets/logo.png" alt="Your Logo" class="logo" ></a>
 
-    <nav class="navbar">
+    <nav class="navbarr">
     <a href="services.php">SERVICES</a>
                 <a href="contact_us.php">CONTACT US</a>
                 <a href="about.php">ABOUT US</a>
