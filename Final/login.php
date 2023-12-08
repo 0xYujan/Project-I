@@ -30,8 +30,8 @@
         <div class="form-box login">
             <form action="customer.php" method="post" id= "myForm">
                 <div class="input-box">
-                    <input type="text" name="email" required placeholder="youremail@example.com">
-                    <label>Email/Username</label>
+                    <input type="email" name="email" required placeholder="youremail@example.com">
+                    <label>Email</label>
                 </div>
 
                 <div class="input-box">

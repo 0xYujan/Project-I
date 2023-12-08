@@ -15,7 +15,6 @@ if (isset($_POST['vsubmit'])) {
     $vno = $_POST['vno'];
     $id = $_POST['bookingid'];
 
-    // Use a prepared statement to prevent SQL injection
     $check = $connect->prepare("SELECT vno FROM payment");
     $check->execute();
     $check->bind_result($existingVno);
@@ -32,7 +31,6 @@ if (isset($_POST['vsubmit'])) {
         }
     }
 
-    // Process the uploaded image
     $name = 'vouch' . $id . '.jpg';
     $location = 'uploads/';
 
@@ -40,7 +38,6 @@ if (isset($_POST['vsubmit'])) {
         $tmp_name = $_FILES['vimg']['tmp_name'];
         $size = $_FILES['vimg']['size'];
 
-        // Use move_uploaded_file to move the uploaded file to the desired location
         if (move_uploaded_file($tmp_name, $location . $name)) {
             $confirm1 = "UPDATE booking SET confirm_key = 10 WHERE id = $id";
 
@@ -254,7 +251,6 @@ if(isset($_POST['btnSubmit']))
             
 
         
-            // Send the email
             $mailed = mail($to, $subject, $emailBody, 'From: yujanr4@gmail.com'); 
               $connect->query(
                   "INSERT INTO `booking` (`id`,  `user`, `bookday`,`ctime`, `shift`, `contact`, `email`, `timecheck`, `confirm_key`) 

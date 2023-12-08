@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futsal Booking System</title>
     <link rel="stylesheet" href="../Final/CSS/signup.css">
-    <script src="javascript/jvs.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
@@ -69,7 +68,7 @@
         </div>
 
     </div>
-    <script src="script.js"></script>
+    <script src="javascript/signup.js"></script>
 </body>
 
 </html>

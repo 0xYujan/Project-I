@@ -12,8 +12,8 @@
 
 <style>
 button.down {
-    background-color: #87ceeb;
-    color: #333;
+    background-color: rgba(43, 43, 43, 1);
+    color: rgba(161, 254, 107, 1);
     cursor: pointer;
     padding: 20px;
     width: 60%;
@@ -26,13 +26,18 @@ button.down {
 
 
 
-div.panel {
+.panel {
     padding: 0 18px;
-    background-color: white;
+    background-color: rgba(43, 43, 43, 1);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     width: 60%;
+}
+
+.panel p {
+    color:white;
+
 }
 
     .panel{
@@ -59,9 +64,9 @@ div.panel {
 
 <div class="container">
 <span style="color:#eee">
-<h2>SERVICES</h2>
+<h2>SERVICES</h2><br><br>
 <p>The Mega Futsal Ground is popular because of their best services provided to their members and bookers. 
-    <br>Following are the major services:<br> </span>
+    <br>Following are the major services:<br> </span><br>
  </p>
 <button class="down">1. SWIMMING POOL</button>
     <div class="panel panel-primary"><p class="text-info">The Mega Swimming Pool is providing extra recreational and refreshing services where people can enjoy before/after the match.</p>

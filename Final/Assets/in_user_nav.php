@@ -1,4 +1,4 @@
-    <style>
+<style>
         @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
 
         * {
@@ -140,4 +140,3 @@
         </nav>
     </header>
 </body>
-

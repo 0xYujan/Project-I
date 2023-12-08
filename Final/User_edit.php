@@ -30,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Passwords do not match."; 
        
     }else{
-        //$hashedPwd = password_hash($newPassword, PASSWORD_BCRYPT);
         $sql = "UPDATE register SET password='" . $newPassword . "' WHERE email='".$_SESSION['email']."' ";
         echo "<script>alert('Your Password has been changed successfully!');</script>";
             session_destroy();    
@@ -47,6 +46,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+
+    <style>
+        
+
+.container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}
+
+
+    </style>
+
 </head>
 
 <body>
@@ -56,7 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Update Password</h2>
 
         <?php
-        // Display success or error messages
         if (isset($success)) {
             echo '<div class="alert alert-success">' . $success . '</div>';
         }

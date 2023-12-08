@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Booking Page</title> 
+    <title>About</title> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
    
@@ -56,8 +56,6 @@
 
 <br>
 
-
-<br>
 
 <h2 style="color:#ddd;padding-top: 56px;">The Futsal Court&nbsp;</h2>
 <br>

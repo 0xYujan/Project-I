@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page after login</title>
-    <link rel="stylesheet" href="../HPA_Log_In/style.css">
+    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
@@ -22,7 +25,7 @@
     }
 ?>
     
-    <div class="container">
+    <div class="containerr">
         <div class="slides-wrapper">
             <div class="slider">
                 <img id="slide-1" src="../assets/1.png">
@@ -36,132 +39,46 @@
         <a href="#slide-1"></a>
         <a href="#slide-2"></a>
         <a href="#slide-3"></a>
-    </div>
+    </div><br><br><br>
+
+    <div class="welcome">
+        <h1>Welcome to Mega Futsal</h1>
+        </div>
+              <div class="court2">
+                <img src="../Final/img/futsalA.jpeg">
+                    <p>Mega Futsal is one of the fastest-growing futsal co. in Nepal and has been selected as the number one futsal for training and development by many players.This futsal recognizes that futsal is a stand-alone sport and an exciting game for players at all levels, but futsal is also an essential component of soccer development.</p>                 
+    </div><br><br><br>
 
     <div class="location">
-        <h1>Futsal Courts</h1>
+        <h1>Some of the World-class athletes says about the futsal</h1>
 
     </div>
+
+    
 
     <div class="court-container">
         <div class="court-box">
             <div class="court">
                 <div class="court-img">
-                    <img id="court-1" src="../assets/1.png">
-                    <h1 class="court-name">Bhaktapur</h1>
+                    <img id="court-1" src="../Final/img/pele.jpg">
+                    <p>Futsal requires you to think and play fast. It makes everything easier when you later switch to football.</p>
+                    <h1 class="court-name">PELÉ</h1>
                 </div>
                 <div class="court-img">
-                    <img id="court-1" src="../assets/1.png">
-                    <h1 class="court-name">Bhaktapur</h1>
+                    <img id="court-1" src="../Final/img/messi.jpg">
+                    <p>As a little boy in Argentina, I played futsal on the streets and for my club. It was tremendous fun, and it really helped me become who I am today.</p>
+                    <h1 class="court-name">MESSI</h1>
                 </div>
                 <div class="court-img">
-                    <img id="court-1" src="../assets/1.png">
-                    <h1 class="court-name">Bhaktapur</h1>
+                    <img id="court-1" src="../Final/img/rd.jpg">
+                    <p>During my childhood in Portugal, all we played was futsal. The small playing area helped me improve my close control, and whenever I played futsal I felt free. If it wasn't for futsal, I wouldn't be the player I am today. </p>
+                    <h1 class="court-name" >RONALDO</h1>
                 </div>
-                <div class="court-img">
-                    <img id="court-1" src="../assets/1.png">
-                    <h1 class="court-name">Bhaktapur</h1>
-                </div>
-            </div>
+             </div>
         </div>
-    </div>
-
-    <div class="near-you-text">
-        <h1>Futsal Court Near You</h1>
-        <form action="#" class="search-bar">
-            <input type="text" placeholder="Search.....">
-            <button type="submit"><i class='bx bx-search'></i></button>
-        </form>
-    </div>
-    <div class="near-you-container">
-        <div class="near-you-img">
-            <img src="../assets/2.png">
-        </div>
-        <div class="near-you">
-            <h1>Futsal Arena Boudha</h1>
-            <br />
-
-            <p><i class='bx bxs-map' style="color: rgba(161, 254, 107, 1);"></i> Kathmandu</p>
-            <p><i class='bx bxs-check-square' style="color: rgba(161, 254, 107, 1);"></i> Court Availability</p>
-            <p><i class='bx bxs-check-circle' style="color: rgba(161, 254, 107, 1);"></i> Open 6 AM</p>
-            <p><i class='bx bxs-x-circle' style="color: rgba(161, 254, 107, 1);"></i> Close 9 PM</p>
-            <br />
-            <p>4.1
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star-half' style="color: rgba(161, 254, 107, 1);"></i>
-            </p>
-            <br />
-            <div class="near-you-btn">
-
-                <a href="../Booking/Booking.php" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
-                <a href="../Booking/Booking.php" class="button"><strong>Book Now</strong></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="near-you-container-2">
-
-        <div class="near-you-2">
-            <h1>Futsal Arena Boudha</h1>
-            <br />
-
-            <p><i class='bx bxs-map' style="color: rgba(161, 254, 107, 1);"></i> Kathmandu</p>
-            <p><i class='bx bxs-check-square' style="color: rgba(161, 254, 107, 1);"></i> Court Availability</p>
-            <p><i class='bx bxs-check-circle' style="color: rgba(161, 254, 107, 1);"></i> Open 6 AM</p>
-            <p><i class='bx bxs-x-circle' style="color: rgba(161, 254, 107, 1);"></i> Close 9 PM</p>
-            <br />
-            <p>4.1
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star-half' style="color: rgba(161, 254, 107, 1);"></i>
-            </p>
-            <br />
-            <div class="near-you-btn-2">
-
-                <a href="../Booking/Booking.php" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
-                <a href="../Booking/Booking.php" class="button"><strong>Book Now</strong></a>
-            </div>
-        </div>
-        <div class="near-you-img">
-            <img src="../assets/2.png">
-        </div>
-    </div>
-
-    <div class="near-you-container">
-        <div class="near-you-img">
-            <img src="../assets/2.png">
-        </div>
-        <div class="near-you">
-            <h1>Futsal Arena Boudha</h1>
-            <br />
-
-            <p><i class='bx bxs-map' style="color: rgba(161, 254, 107, 1);"></i> Kathmandu</p>
-            <p><i class='bx bxs-check-square' style="color: rgba(161, 254, 107, 1);"></i> Court Availability</p>
-            <p><i class='bx bxs-check-circle' style="color: rgba(161, 254, 107, 1);"></i> Open 6 AM</p>
-            <p><i class='bx bxs-x-circle' style="color: rgba(161, 254, 107, 1);"></i> Close 9 PM</p>
-            <br />
-            <p>4.1
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star' style="color: rgba(161, 254, 107, 1);"></i>
-                <i class='bx bxs-star-half' style="color: rgba(161, 254, 107, 1);"></i>
-            </p>
-            <br />
-            <div class="near-you-btn">
-
-                <a href="../Booking/Booking.php" class="button"><strong>Map <i class='bx bx-map'></i></strong></a>
-                <a href="../Booking/Booking.php" class="button"><strong>Book Now</strong></a>
-            </div>
-        </div>
-    </div>
+    </div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        
+    </body>
+    
+    </html> 
     <?php include("footer.php"); ?>
-    <script src="script.js"></script>
-</body>
-
-</html> 

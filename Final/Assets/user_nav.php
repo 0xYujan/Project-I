@@ -111,9 +111,9 @@
         <a href="index.php"><img src="../Final/Assets/logo.png" alt="Mega Futsal" class="logo" ></a>
         <nav class="navbarr">
 
-                <a href="index.php">Home</a>
-                <a href="Uhistory.php">History</a>
-                <a href="User_edit.php" style=" margin-right: 80px; ">Edit </a>
+                <a href="index.php">HOME</a>
+                <a href="Uhistory.php">HISTORY</a>
+                <a href="User_edit.php" style=" margin-right: 80px; ">EDIT</a>
            
               
                 <?php
