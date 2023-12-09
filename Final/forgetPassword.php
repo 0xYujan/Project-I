@@ -23,7 +23,7 @@
         include("../Final/Assets/out_user_nav.php");
         ?>
         <?php
-        $con = mysqli_connect("localhost", "root", "", "Futsal1");
+        $con = mysqli_connect("localhost", "root", "", "Futsal2");
         if (!$con) {
             die("Connection failed: " . mysqli_connect_error());
         }
