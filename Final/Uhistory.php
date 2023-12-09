@@ -6,83 +6,65 @@
     <title>Booking History</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <style type="text/CSS">
-        th,td{
-            padding:5px; 
+        th, td {
+            padding: 5px; 
+        }
+
+        .container-main {
+            margin-top: 20px; /* Add margin to create space between navbar and content */
         }
     </style>
 </head>
 <body>
 <?php
 session_start();
+
 if (isset($_SESSION['email'])) {
     include("../Final/Assets/user_nav.php");
-} else {
-    header("Location: 404-page.php");
-    exit();
-}
 
-date_default_timezone_set('Asia/Kathmandu');
-?><br><br><br>
-
-<?php
-if (isset($_SESSION['email'])) {
     $connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Server.");
     require 'config.php';
 
-    $history = "SELECT bookday FROM booking WHERE confirm_key = 11 AND email = '" . $_SESSION['email'] . "'";
-    $test = $connect->query($history);
-    $history = $test->fetch_assoc();  
-    $bookday = $history['bookday'];
+    $historyQuery = "SELECT booking.id, booking.user, booking.id AS booking_id, booking.bookday, payment.vno
+                    FROM booking
+                    LEFT JOIN payment ON booking.id = payment.booking_id
+                    WHERE booking.confirm_key = 100 AND email = '" . $_SESSION['email'] . "'";
+    
+    $allBookings = $connect->query($historyQuery);
+    $numBookings = $allBookings->num_rows;
 
-    $timestamp = strtotime($bookday);
-    $timecheck = $timestamp + 86400;
-    $t = time();
-
-    if ($t >= $timecheck) {
-        $updateQuery = "UPDATE booking SET confirm_key = 100 WHERE confirm_key = 11 AND email = '" . $_SESSION['email'] . "'";
-        $connect->query($updateQuery);
-    }
-
-    echo '<div class="container" style="background-color: #eee;
+    echo '<div class="container container-main" style="background-color: #eee;
                                         overflow:auto; 
                                         border:2px solid grey;  
                                         box-shadow: 10px 10px 5px #DCDCDC;
-                                        width:95%;
-                                        margin: 20px;">
-                  <h3><u>Your Bookings History</u></h3><br>';
+                                        width:95%;">';
 
-    $historyQuery = "SELECT * FROM booking WHERE confirm_key = 100 AND email = '" . $_SESSION['email'] . "'";
-    $allbookings = $connect->query($historyQuery);
+    echo '<h3><u>Your Bookings History</u></h3><br>';
 
-    $i = 0;
+    if ($numBookings > 0) {
+        echo '<div class="container">
+                <table border="2" width="90%">
+                    <tr>
+                        <th>History ID</th>
+                        <th>User</th>
+                        <th>Booking ID</th>
+                        <th>Booked Date</th>
+                        <th>Voucher Number</th>
+                    </tr>';
 
-    echo '
-    <div class="container">
-        <table border="2" width="90%">
-            <tr>
-                <th>History ID</th>
-                <th>User</th>
-                <th>Booking ID</th>
-                <th>Booked Date</th>
-                <th>Voucher Number</th>
-            </tr>';
+        while ($booking = $allBookings->fetch_assoc()) {
+            echo "<tr> 
+                    <td>" . $booking['id'] . "</td>
+                    <td>" . $booking['user'] . "</td>
+                    <td>" . $booking['booking_id'] . "</td>
+                    <td>" . $booking['bookday'] . "</td>
+                    <td>" . $booking['vno'] . "</td>
+                  </tr>";
+        }
 
-    while ($booking = $allbookings->fetch_assoc()) {
-        echo " <tr> 
-                        <td> " . $booking['id'] . "</td>
-                        <td> " . $booking['user'] . "</td>
-                        <td> " . $booking['id'] . "</td>
-                        <td> " . $booking['bookday'] . "</td>
-                        <td> " . $booking['vno'] . "</td>
-                </tr";
-        $i++;
-    }
-
-    echo '</table>
-        </div>';
-
-    if ($i == 0) {
-        echo '<h5 style="color:#777;">No record!</h5>';
+        echo '</table></div>';
+    } else {
+        echo '<h5 style="color:#777;">No booking history available!</h5>';
     }
 
     echo '</div>';
@@ -91,6 +73,5 @@ if (isset($_SESSION['email'])) {
     exit();
 }
 ?>
-
 </body>
 </html>

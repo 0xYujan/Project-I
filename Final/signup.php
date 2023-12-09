@@ -68,7 +68,6 @@
         </div>
 
     </div>
-    <script src="javascript/signup.js"></script>
 </body>
 
 </html>

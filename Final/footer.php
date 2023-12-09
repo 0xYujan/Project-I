@@ -117,8 +117,8 @@
                 <div class="footer-col">
                     <h4>Users Policy</h4>
                     <ul>
-                        <li><a>Privacy Policy</a></li>
-                        <li><a>Terms & Conditions</a></li>
+                        <li><a href="privacy.php">Privacy Policy</a></li>
+                        <li><a href="privacy.php">Terms & Conditions</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

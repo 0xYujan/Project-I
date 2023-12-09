@@ -2,9 +2,9 @@
 	
 		$connect = mysqli_connect("localhost","root","") or die ("Unable to connect to MySQL Sever.");
 		
-		$dbstart = "create database if not exists Futsal1;";
+		$dbstart = "create database if not exists Futsal2;";
 		$connect->query($dbstart);
-		mysqli_select_db($connect , "Futsal1");
+		mysqli_select_db($connect , "Futsal2");
 
 		$que = "CREATE TABLE IF NOT EXISTS `register` (
 			`id` INT(10) NOT NULL AUTO_INCREMENT,

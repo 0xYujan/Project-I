@@ -83,48 +83,81 @@ if (isset($_POST['login'])) {
       }
     }
   }
+  if (isset($_POST['btnSubmit'])) {
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
 
-if(isset($_POST['btnSubmit']))
-  {
-
-
-    $fname=$_POST['fname'];
-    $user=$fname;
-    $lname=$_POST['lname'];
-    $email=$_POST['email'];
-    $contact=$_POST['contact'];
-    $password=$_POST['password'];
-    $cpassword=$_POST['cpassword']; 
-    $test = "select email from register";
-    $allUsers = $connect->query($test);
-    $flag = 0;
-    while($test = $allUsers->fetch_assoc())
-    {
-      if($test['email'] == $_POST['email']) $flag = 1;
+    if (!preg_match('/^[0-9]{10}$/', $contact)) {
+        echo '<script language="javascript">';
+        echo 'alert("Invalid Contact Number!");';
+        echo 'window.location.replace("signup.php");';
+        echo '</script>';
+        exit;
     }
-    if ($flag)
-    {
-      echo '<script language="javascript">;
-           alert("Email Already exists!!");
-          window.location.replace("signup.php");
-          </script>';
-          
-    } 
-      else{  
-      $connect->query("INSERT INTO `register`(`id`, `fname`, `lname`, `email`, `contact`, `password`)
-                VALUES (NULL,'$fname','$lname','$email','$contact','$password')");
-      $id = "select id from register where email = '".$_POST['email']."' and password = '".$_POST['password']."' ;";
-      //session_start();
-      $_SESSION['email'] = $email;
-      $_SESSION['pwd']   = $password;
-      $_SESSION['user']  = $fname;
-      echo '<script language="javascript">';
-          echo 'alert("User Registered Successfully!")';
-          echo '</script>'; 
 
-    $to = $email; 
+    if ($password !== $cpassword) {
+        echo '<script language="javascript">';
+        echo 'alert("Passwords do not match!");';
+        echo 'window.location.replace("signup.php");';
+        echo '</script>';
+        exit;
+    }
+
+    $checkEmailQuery = "SELECT email FROM register WHERE email = ?";
+    $stmtEmail = $connect->prepare($checkEmailQuery);
+    $stmtEmail->bind_param("s", $email);
+    $stmtEmail->execute();
+    $stmtEmail->store_result();
+
+    if ($stmtEmail->num_rows > 0) {
+        $stmtEmail->close();
+        echo '<script language="javascript">';
+        echo 'alert("Email Already Exists!!");';
+        echo 'window.location.replace("signup.php");';
+        echo '</script>';
+        exit; 
+    }
+
+    $checkContactQuery = "SELECT contact FROM register WHERE contact = ?";
+    $stmtContact = $connect->prepare($checkContactQuery);
+    $stmtContact->bind_param("s", $contact);
+    $stmtContact->execute();
+    $stmtContact->store_result();
+
+    if ($stmtContact->num_rows > 0) {
+        $stmtContact->close();
+        echo '<script language="javascript">';
+        echo 'alert("Contact Number Already Exists!!");';
+        echo 'window.location.replace("signup.php");';
+        echo '</script>';
+        exit; 
+    }
+
+   
+    $stmtEmail->close();
+    $stmtContact->close();
+
+    $insertQuery = "INSERT INTO register (fname, lname, email, contact, password) VALUES (?, ?, ?, ?, ?)";
+    $stmtInsert = $connect->prepare($insertQuery);
+    $stmtInsert->bind_param("sssss", $fname, $lname, $email, $contact, $password);
+    $stmtInsert->execute();
+
+    $_SESSION['email'] = $email;
+    $_SESSION['pwd'] = $password;
+    $_SESSION['user'] = $fname;
+
+    echo '<script language="javascript">';
+    echo 'alert("User Registered Successfully!");';
+    echo '</script>';
+
+    $stmtInsert->close();
+
+    $to = $email;
     $subject = 'Registration Confirmation';
-
     $emailBody = "Dear $fname,\n\n";
     $emailBody .= "Thank you for registering with our Futsal Club!\n";
     $emailBody .= "Your registration details:\n";
@@ -132,13 +165,10 @@ if(isset($_POST['btnSubmit']))
     $emailBody .= "Email: $email\n";
     $emailBody .= "Contact: $contact\n";
 
-    
-    $mailed = mail($to, $subject, $emailBody, 'From: yujanr4@gmail.com');
+    $mailed = mail($to, $subject, $emailBody, 'From: your_email@example.com');
 
-      }
     $connect->close();
-  
-  }
+}
 
   if(isset($_POST['login']))
   {
@@ -164,13 +194,13 @@ if(isset($_POST['btnSubmit']))
         $_SESSION['pwd']    = $pwd;
         $_SESSION['user']   = $user;
         }
-        else
-        {
-            echo '<script language="javascript">';
-            echo 'alert("Invalid Username or Password!!!")';
-            echo '</script>';
-            header("location: index.php");      
-        }
+        else {
+          echo '<script language="javascript">';
+          echo 'alert("Invalid Username or Password!!!");';
+          echo 'window.location.href = "login.php";';
+          echo '</script>';
+          exit;
+      }
   }
 
    if(isset($_POST['proceed']))
