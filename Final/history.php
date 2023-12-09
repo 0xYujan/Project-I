@@ -27,12 +27,30 @@ if ($_SESSION['admin'] == 1) {
 }
 
 date_default_timezone_set('Asia/Kathmandu');
-?><br><br><br>
+?><br>
 
 <?php
 if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
     $connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Server.");
     require 'config.php';
+
+
+    
+        $history = "select bookday from booking where confirm_key = 11";
+                $test = $connect->query($history);
+                $history=$test->fetch_assoc();
+                /// BUGGGGGGGGGGGGGGGGGGGGGGGGGGGgg
+                $bookday=$history['bookday'];
+        
+            $timestamp = strtotime($bookday);
+            $timecheck = $timestamp + 86400;
+            $t = time();
+    
+            if ($t >= $timecheck) {
+                $updateQuery = "UPDATE booking SET confirm_key = 100 WHERE confirm_key = 11 ";
+                $connect->query($updateQuery);
+            }
+    
 
     $historyQuery = "SELECT booking.id, booking.user, booking.id AS booking_id, booking.bookday, payment.vno
                     FROM booking

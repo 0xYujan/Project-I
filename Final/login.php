@@ -14,7 +14,8 @@
 
     <?php 
     session_start();
-    
+    date_default_timezone_set('Asia/Kathmandu');
+
     include("../Final/Assets/out_user_nav.php"); ?>
     <div class="row-line">
         <div class="members-text">

@@ -16,6 +16,8 @@
 <body>
 
 <?php
+date_default_timezone_set('Asia/Kathmandu');
+
     session_start();
     if(isset($_SESSION['email'])){
         include("../Final/Assets/in_user_nav.php");

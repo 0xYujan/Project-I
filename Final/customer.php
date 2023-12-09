@@ -249,12 +249,12 @@ if (isset($_POST['login'])) {
             else if($shift == "6 TO 7 PM")
               $hr = 18 * 3600;
             else if($shift == "7 TO 8 PM")
-              $hr = 22 * 3600;
+              $hr = 19 * 3600;
             $timestamp = strtotime($bookday);
             $timestamp += $hr;
             $timecheck = $timestamp - 7200;
             $rushtimecheck = $t + 600;
-            $rushour = $timecheck + 7120; 
+            $rushour = $timecheck + 7200; 
             $deadline = date("Y-m-d H:i:s", $timecheck);
             // $ctime = $t;
             
@@ -522,16 +522,16 @@ echo '<br></div> <!-- row --><br><br>';
 
 <div style="position: relative; top: 5%;">
   <?php
-include"footer.php";
+  include"footer.php";
 ?>
 </div>
 
-<script>
+<!-- <script>
   function refreshContent() {
     var newData = "New content fetched at: " + new Date();
     $("#contentToUpdate").html(newData);
   }
   setInterval(refreshContent, 5000);
-</script>
+</script> -->
 </body>
 </html>

@@ -41,7 +41,7 @@
     <?php
         session_start();
         if (isset($_SESSION['email'])) {
-            include("../Final/Assets/user_nav.php");
+            include("../Final/Assets/user_nav.php");?><br><br><br><br><br><?php
 
             $connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Server.");
             mysqli_select_db($connect, "Futsal1");

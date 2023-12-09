@@ -20,10 +20,27 @@
 session_start();
 
 if (isset($_SESSION['email'])) {
-    include("../Final/Assets/user_nav.php");
+    date_default_timezone_set('Asia/Kathmandu');
+
+    include("../Final/Assets/user_nav.php"); ?><br><?php
 
     $connect = mysqli_connect("localhost", "root", "") or die("Unable to connect to MySQL Server.");
     require 'config.php';
+
+    $history = "select bookday from booking where confirm_key = 11";
+                $test = $connect->query($history);
+                $history=$test->fetch_assoc();
+                
+                $bookday=$history['bookday'];
+        
+            $timestamp = strtotime($bookday);
+            $timecheck = $timestamp + 86400;
+            $t = time();
+    
+            if ($t >= $timecheck) {
+                $updateQuery = "UPDATE booking SET confirm_key = 100 WHERE confirm_key = 11 AND email = '" . $_SESSION['email'] . "' ";
+                $connect->query($updateQuery);
+            }
 
     $historyQuery = "SELECT booking.id, booking.user, booking.id AS booking_id, booking.bookday, payment.vno
                     FROM booking
